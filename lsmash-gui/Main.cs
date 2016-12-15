@@ -41,29 +41,41 @@ namespace lsmash_gui
 
         }
 
+        private void TextBoxDragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.All : DragDropEffects.None;
+        }
+
+        private static string GetOutputFileName(string fullPath)
+        {
+            string directory = Path.GetDirectoryName(fullPath) ?? "";
+            string fileName = Path.GetFileNameWithoutExtension(fullPath) ?? "";
+            string path = Path.Combine(directory, fileName + "_muxed" + ".mp4");
+            int index = 1;
+            while (File.Exists(path))
+            {
+                path = Path.Combine(directory, fileName + "_muxed" + $"_{index++}.mp4");
+            }
+            return path;
+        }
+
         private void openvideo_Click(object sender, EventArgs e)
         {
             //open video file
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "RAW MPEG-4 AVC|*.264;*.h264;*.avc|RAW MPEG-4 HEVC|*.265;*.hevc|All Files|*.*";
-            openFileDialog1.RestoreDirectory = true;
-            openFileDialog1.FilterIndex = 1;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Filter = "RAW MPEG-4 AVC|*.264;*.h264;*.avc|RAW MPEG-4 HEVC|*.265;*.hevc|All Files|*.*",
+                RestoreDirectory = true,
+                FilterIndex = 1
+            };
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Videopath.Text = openFileDialog1.FileName;
-
+                outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
 
-        private void Videopath_DragEnter(object sender, DragEventArgs e)
-        {
-            //drag video file
-            if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
-            {
-
-                e.Effect = DragDropEffects.All;
-            }
-        }
+        private static readonly HashSet<string> AcceptableVideoExtension = new HashSet<string> { ".avc", ".h264", ".264", ".hevc", ".265" };
 
         private void Videopath_DragDrop(object sender, DragEventArgs e)
         {
@@ -77,9 +89,10 @@ namespace lsmash_gui
             }
             else
             {
-                if (Path.GetExtension(fileName) == (".avc") || Path.GetExtension(fileName) == (".h264") || Path.GetExtension(fileName) == (".264") || Path.GetExtension(fileName) == (".hevc") || Path.GetExtension(fileName) == (".265"))
+                if (AcceptableVideoExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Videopath.Text = fileName;
+                    outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
                 {
@@ -103,6 +116,7 @@ namespace lsmash_gui
             vtrack_name.Clear();
         }
 
+        private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".m4a", ".mp3" };
         private void Audiopath_DragDrop(object sender, DragEventArgs e)
         {
             //drag video file and confirm format
@@ -115,9 +129,11 @@ namespace lsmash_gui
             }
             else
             {
-                if (Path.GetExtension(fileName) == (".aac") || Path.GetExtension(fileName) == (".m4a") || Path.GetExtension(fileName) == (".mp3"))
+                if (AcceptableAudioExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Audiopath.Text = fileName;
+                    if (Videopath.Text == "")
+                        outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
                 {
@@ -126,27 +142,20 @@ namespace lsmash_gui
             }
         }
 
-        private void Audiopath_DragEnter(object sender, DragEventArgs e)
-        {
-            //drag audio file
-            if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
-            {
-
-                e.Effect = DragDropEffects.All;
-            }
-        }
-
         private void openaudio_Click(object sender, EventArgs e)
         {
             //open audio file
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "AAC|*.aac;*.m4a|mp3|*.mp3|All Files|*.*";
-            openFileDialog1.RestoreDirectory = true;
-            openFileDialog1.FilterIndex = 1;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Filter = "AAC|*.aac;*.m4a|mp3|*.mp3|All Files|*.*",
+                RestoreDirectory = true,
+                FilterIndex = 1
+            };
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Audiopath.Text = openFileDialog1.FileName;
-
+                if (Videopath.Text == "")
+                    outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
 
@@ -157,7 +166,7 @@ namespace lsmash_gui
 
         private void Chapterpath_DragDrop(object sender, DragEventArgs e)
         {
-            //drag video file and confirm format
+            //drag chapter file and confirm format
             string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
             //confirm if path is a directort
             string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
@@ -167,7 +176,7 @@ namespace lsmash_gui
             }
             else
             {
-                if (Path.GetExtension(fileName) == (".txt"))
+                if (Path.GetExtension(fileName).ToLower() == (".txt"))
                 {
                     Chapterpath.Text = fileName;
                 }
@@ -178,23 +187,15 @@ namespace lsmash_gui
             }
         }
 
-        private void Chapterpath_DragEnter(object sender, DragEventArgs e)
-        {
-            //drag chapter file
-            if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
-            {
-
-                e.Effect = DragDropEffects.All;
-            }
-        }
-
         private void openchapter_Click(object sender, EventArgs e)
         {
             //open chapter file
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Chapter File|*.txt|All Files|*.*";
-            openFileDialog1.RestoreDirectory = true;
-            openFileDialog1.FilterIndex = 1;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Filter = "Chapter File|*.txt|All Files|*.*",
+                RestoreDirectory = true,
+                FilterIndex = 1
+            };
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Chapterpath.Text = openFileDialog1.FileName;
@@ -216,9 +217,11 @@ namespace lsmash_gui
         {
             //save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = Path.GetDirectoryName(outputpath.Text);
             saveFileDialog1.Filter = "Muxed File|*.mp4|All Files|*.*";
             saveFileDialog1.RestoreDirectory = true;
             saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(outputpath.Text);
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 outputpath.Text = saveFileDialog1.FileName;
@@ -263,19 +266,19 @@ namespace lsmash_gui
                     atrack_flag = true;
                 }
                 //additions
-                if (vtrack_flag = true && FPS_Value.SelectedItem != null)
+                if (vtrack_flag && FPS_Value.SelectedItem != null)
                 {
                     arg_muxer = (arg_muxer + "?1:fps=" + FPS_Value.SelectedItem);
                     vfps_flag = true;
                 }
-                if (vtrack_flag = true && vtrack_name.Text != "")
+                if (vtrack_flag && vtrack_name.Text != "")
                 {
                     if (vfps_flag == true)
                         arg_muxer = (arg_muxer + ",handler=" + vtrack_name.Text);
                     else
                         arg_muxer = (arg_muxer + "?1:handler=" + vtrack_name.Text);
                 }
-                if (atrack_flag = true && Lang_Value.SelectedItem != null)
+                if (atrack_flag && Lang_Value.SelectedItem != null)
                 {
                     arg_muxer = (arg_muxer + "?2:language=" + Lang_Value.SelectedItem);
                 }
@@ -283,20 +286,20 @@ namespace lsmash_gui
                 {
                     arg_muxer = (arg_muxer + "?2:language=jpn");
                 }
-                if (atrack_flag = true && atrack_name.Text != "")
+                if (atrack_flag && atrack_name.Text != "")
                 {
                     arg_muxer = (arg_muxer + ",handler=" + atrack_name.Text);
                 }
-                if (atrack_flag = true && ADelay_Value.Value != 0)
+                if (atrack_flag && ADelay_Value.Value != 0)
                 {
                     arg_muxer = (arg_muxer + ",encoder-delay=" + ADelay_Value.Value.ToString());
                 }
                 //output
-                if (arg_muxer.Contains(" -i \"") == true)
+                if (vtrack_flag || atrack_flag)
                 {
                     arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
                     //logs.Text = arg_muxer;
-                    logs.Text += ("Processing....");
+                    logs.Text = ("Processing....");
                     ExcuteDosCommand(arg_muxer);
                     logs.Text = ("Finished....");
                 }
@@ -320,20 +323,25 @@ namespace lsmash_gui
         {
             try
             {
-                Process p = new Process();
-                p.StartInfo.FileName = "cmd";
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.RedirectStandardInput = true;
-                p.StartInfo.RedirectStandardOutput = true;
-                p.StartInfo.RedirectStandardError = true;
-                p.StartInfo.CreateNoWindow = true;
-                p.OutputDataReceived += new DataReceivedEventHandler(sortProcess_OutputDataReceived);
+                Process p = new Process
+                {
+                    StartInfo =
+                    {
+                        FileName = "cmd",
+                        UseShellExecute = false,
+                        RedirectStandardInput = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true
+                    }
+                };
+                p.OutputDataReceived += sortProcess_OutputDataReceived;
                 p.Start();
                 StreamWriter cmdWriter = p.StandardInput;
                 p.BeginOutputReadLine();
-                if (!String.IsNullOrEmpty(cmd))
+                if (!string.IsNullOrEmpty(cmd))
                 {
-                    cmdWriter.WriteLine( "\"" + Application.StartupPath + "\\muxer.exe\"" + cmd);
+                    cmdWriter.WriteLine("\"" + Application.StartupPath + "\\muxer.exe\"" + cmd);
                 }
                 cmdWriter.Close();
                 p.WaitForExit();
