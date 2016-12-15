@@ -113,7 +113,9 @@ namespace lsmash_gui
 
         private void Clear_vtrack_name_Click(object sender, EventArgs e)
         {
+            Videopath.Clear();
             vtrack_name.Clear();
+            FPS_Value.SelectedItem = null;
         }
 
         private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".m4a", ".mp3" };
@@ -157,7 +159,10 @@ namespace lsmash_gui
 
         private void Clear_atrack_name_Click(object sender, EventArgs e)
         {
+            Audiopath.Clear();
             atrack_name.Clear();
+            Lang_Value.SelectedItem = null;
+            ADelay_Value.Value = 0;
         }
 
         private void Chapterpath_DragDrop(object sender, DragEventArgs e)
