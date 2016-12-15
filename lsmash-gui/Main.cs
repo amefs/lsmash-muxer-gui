@@ -71,8 +71,7 @@ namespace lsmash_gui
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Videopath.Text = openFileDialog1.FileName;
-                if (outputpath.Text == "")
-                    outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
+                outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
 
@@ -93,8 +92,7 @@ namespace lsmash_gui
                 if (AcceptableVideoExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Videopath.Text = fileName;
-                    if (outputpath.Text == "")
-                        outputpath.Text = GetOutputFileName(fileName);
+                    outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
                 {
@@ -134,8 +132,6 @@ namespace lsmash_gui
                 if (AcceptableAudioExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Audiopath.Text = fileName;
-                    if (Videopath.Text == "" && outputpath.Text == "")
-                        outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
                 {
@@ -156,8 +152,6 @@ namespace lsmash_gui
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Audiopath.Text = openFileDialog1.FileName;
-                if (Videopath.Text == "" && outputpath.Text == "")
-                    outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
 
@@ -306,7 +300,7 @@ namespace lsmash_gui
                     //logs.Text = arg_muxer;
                     logs.Text = ("Processing....");
                     ExcuteDosCommand(arg_muxer);
-                    logs.Text = ("Finished....");
+                    logs.Text = ("Finished.");
                 }
                 else
                     MessageBox.Show("Nothing to mux!");
