@@ -286,7 +286,7 @@ namespace lsmash_gui
                 {
                     arg_muxer = (arg_muxer + "?2:language=" + Lang_Value.SelectedItem);
                 }
-                else
+                else if (atrack_flag)
                 {
                     arg_muxer = (arg_muxer + "?2:language=jpn");
                 }
