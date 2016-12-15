@@ -71,7 +71,8 @@ namespace lsmash_gui
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Videopath.Text = openFileDialog1.FileName;
-                outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
+                if (outputpath.Text == "")
+                    outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
 
@@ -92,7 +93,8 @@ namespace lsmash_gui
                 if (AcceptableVideoExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Videopath.Text = fileName;
-                    outputpath.Text = GetOutputFileName(fileName);
+                    if (outputpath.Text == "")
+                        outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
                 {
@@ -132,7 +134,7 @@ namespace lsmash_gui
                 if (AcceptableAudioExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Audiopath.Text = fileName;
-                    if (Videopath.Text == "")
+                    if (Videopath.Text == "" && outputpath.Text == "")
                         outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
@@ -154,7 +156,7 @@ namespace lsmash_gui
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Audiopath.Text = openFileDialog1.FileName;
-                if (Videopath.Text == "")
+                if (Videopath.Text == "" && outputpath.Text == "")
                     outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
@@ -217,11 +219,14 @@ namespace lsmash_gui
         {
             //save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = Path.GetDirectoryName(outputpath.Text);
             saveFileDialog1.Filter = "Muxed File|*.mp4|All Files|*.*";
             saveFileDialog1.RestoreDirectory = true;
             saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(outputpath.Text);
+            if (outputpath.Text != "")
+            {
+                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(outputpath.Text);
+                saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(outputpath.Text);
+            }
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 outputpath.Text = saveFileDialog1.FileName;
