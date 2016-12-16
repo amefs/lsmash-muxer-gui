@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -245,6 +246,7 @@ namespace lsmash_gui
 
         private void Start_Click(object sender, EventArgs e)
         {
+
             bool vtrack_flag = false;
             bool atrack_flag = false;
             bool vfps_flag = false;
@@ -304,8 +306,10 @@ namespace lsmash_gui
                     arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
                     //logs.Text = arg_muxer;
                     logs.Text = ("Processing....");
-                    ExcuteDosCommand(arg_muxer);
-                    logs.Text = ("Finished.");
+                    Thread thread = new Thread(ThreadCallBack);
+                    thread.Start(arg_muxer);
+                    //ExcuteDosCommand(arg_muxer);
+                    //logs.Text = ("Finished.");
                 }
                 else
                     MessageBox.Show("Nothing to mux!");
@@ -313,6 +317,11 @@ namespace lsmash_gui
 
         }
 
+        public delegate void ParameterizedThreadStart(object obj);
+        static void ThreadCallBack(object arg)
+        {
+            ExcuteDosCommand(arg);
+        }
         private void Lang_Value_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -323,8 +332,9 @@ namespace lsmash_gui
 
         }
 
-        private void ExcuteDosCommand(string cmd)
+        private static void ExcuteDosCommand(object arg)
         {
+            string cmd = (String)arg;
             try
             {
                 Process p = new Process
@@ -357,7 +367,7 @@ namespace lsmash_gui
                 MessageBox.Show("执行命令失败，请检查输入的命令是否正确！");
             }
         }
-        private void sortProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        private static void sortProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.Data))
             {
