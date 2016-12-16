@@ -264,12 +264,7 @@ namespace lsmash_gui
                     arg_muxer = (arg_muxer + " -i \"" + Videopath.Text + "\"");
                     vtrack_flag = true;
                 }
-                if (Audiopath.Text != "")
-                {
-                    arg_muxer = (arg_muxer + " -i \"" + Audiopath.Text + "\"");
-                    atrack_flag = true;
-                }
-                //additions
+                //video track additions
                 if (vtrack_flag && FPS_Value.SelectedItem != null)
                 {
                     arg_muxer = (arg_muxer + "?1:fps=" + FPS_Value.SelectedItem);
@@ -282,13 +277,19 @@ namespace lsmash_gui
                     else
                         arg_muxer = (arg_muxer + "?1:handler=" + vtrack_name.Text);
                 }
+                if (Audiopath.Text != "")
+                {
+                    arg_muxer = (arg_muxer + " -i \"" + Audiopath.Text + "\"");
+                    atrack_flag = true;
+                }
+                //audio track additions
                 if (atrack_flag && Lang_Value.SelectedItem != null)
                 {
-                    arg_muxer = (arg_muxer + "?2:language=" + Lang_Value.SelectedItem);
+                    arg_muxer = (arg_muxer + "?1:language=" + Lang_Value.SelectedItem);
                 }
                 else if (atrack_flag)
                 {
-                    arg_muxer = (arg_muxer + "?2:language=jpn");
+                    arg_muxer = (arg_muxer + "?1:language=jpn");
                 }
                 if (atrack_flag && atrack_name.Text != "")
                 {
@@ -331,23 +332,20 @@ namespace lsmash_gui
                 {
                     StartInfo =
                     {
-                        FileName = "cmd",
+                        FileName = Application.StartupPath + "\\muxer.exe",
+                        Arguments = cmd,
                         UseShellExecute = false,
                         RedirectStandardInput = true,
                         RedirectStandardOutput = true,
                         RedirectStandardError = true,
-                        CreateNoWindow = true
+                        CreateNoWindow = true,
                     }
                 };
                 p.OutputDataReceived += sortProcess_OutputDataReceived;
+                p.ErrorDataReceived += sortProcess_OutputDataReceived;
                 p.Start();
-                StreamWriter cmdWriter = p.StandardInput;
+                p.BeginErrorReadLine();
                 p.BeginOutputReadLine();
-                if (!string.IsNullOrEmpty(cmd))
-                {
-                    cmdWriter.WriteLine("\"" + Application.StartupPath + "\\muxer.exe\"" + cmd);
-                }
-                cmdWriter.Close();
                 p.WaitForExit();
                 p.Close();
             }
@@ -359,10 +357,14 @@ namespace lsmash_gui
         }
         private void sortProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
+            StringBuilder outputBuilder;
+            outputBuilder = new StringBuilder();
             if (!String.IsNullOrEmpty(e.Data))
             {
                 //this.BeginInvoke(new Action(() => { this.logs.Text= e.Data; }));
                 //logs.Text = e.Data;
+                //outputBuilder.Append(e.Data);
+                //logs.Text += "\r" + outputBuilder.ToString();
             }
         }
 
@@ -377,6 +379,7 @@ namespace lsmash_gui
             FPS_Value.SelectedItem = null;
             Lang_Value.SelectedItem = null;
             ADelay_Value.Value = 0;
+            logs.Text = "";
         }
     }
 }
