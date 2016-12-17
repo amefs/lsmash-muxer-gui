@@ -282,7 +282,7 @@ namespace lsmash_gui
                 //video track additions
                 if (vtrack_flag && FPS_Value.SelectedItem != null)
                 {
-                    arg_muxer = (arg_muxer + "?1:fps=" + FPS_Value.SelectedItem);
+                    arg_muxer = (arg_muxer + "?fps=" + FPS_Value.SelectedItem);
                     vfps_flag = true;
                 }
                 if (vtrack_flag && vtrack_name.Text != "")
@@ -290,7 +290,7 @@ namespace lsmash_gui
                     if (vfps_flag == true)
                         arg_muxer = (arg_muxer + ",handler=" + vtrack_name.Text);
                     else
-                        arg_muxer = (arg_muxer + "?1:handler=" + vtrack_name.Text);
+                        arg_muxer = (arg_muxer + "?handler=" + vtrack_name.Text);
                 }
                 if (Audiopath.Text != "")
                 {
@@ -300,11 +300,11 @@ namespace lsmash_gui
                 //audio track additions
                 if (atrack_flag && Lang_Value.SelectedItem != null)
                 {
-                    arg_muxer = (arg_muxer + "?1:language=" + Lang_Value.SelectedItem);
+                    arg_muxer = (arg_muxer + "?language=" + Lang_Value.SelectedItem);
                 }
                 else if (atrack_flag)
                 {
-                    arg_muxer = (arg_muxer + "?1:language=jpn");
+                    arg_muxer = (arg_muxer + "?language=jpn");
                 }
                 if (atrack_flag && atrack_name.Text != "")
                 {
