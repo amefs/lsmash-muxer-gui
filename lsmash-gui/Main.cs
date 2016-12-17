@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
+using MediaInfoLib;
 
 
 namespace lsmash_gui
@@ -71,6 +72,13 @@ namespace lsmash_gui
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Videopath.Text = openFileDialog1.FileName;
+                MediaInfo vfile = new MediaInfo();
+                vfile.Open(Videopath.Text);
+                string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
+                if (FPS =="/")
+                    FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate"))*1000).ToString() + "/" + "1000");
+                vfile.Close();
+                FPS_Value.SelectedItem = FPS;
                 outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
@@ -92,6 +100,13 @@ namespace lsmash_gui
                 if (AcceptableVideoExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Videopath.Text = fileName;
+                    MediaInfo vfile = new MediaInfo();
+                    vfile.Open(Videopath.Text);
+                    string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
+                    if (FPS == "/")
+                        FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
+                    vfile.Close();
+                    FPS_Value.SelectedItem = FPS;
                     outputpath.Text = GetOutputFileName(fileName);
                 }
                 else

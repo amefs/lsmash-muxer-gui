@@ -41,64 +41,64 @@
             this.open_videofile = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Videopath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Video_Name = new System.Windows.Forms.TableLayoutPanel();
             this.vtrack_name = new System.Windows.Forms.TextBox();
             this.FPS_Value = new System.Windows.Forms.ComboBox();
             this.Vname = new System.Windows.Forms.Label();
+            this.tableLayoutPanel_vtrack = new System.Windows.Forms.TableLayoutPanel();
+            this.Videopath = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel_Audio = new System.Windows.Forms.TableLayoutPanel();
-            this.ADelay_Value = new System.Windows.Forms.NumericUpDown();
             this.openaudio = new System.Windows.Forms.Button();
             this.Language = new System.Windows.Forms.Label();
             this.ADelay = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Clear_atrack_name = new System.Windows.Forms.Button();
-            this.Audiopath = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel_Delay = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel_AD = new System.Windows.Forms.TableLayoutPanel();
+            this.ADelay_Value = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel_Audio_Name = new System.Windows.Forms.TableLayoutPanel();
             this.Aname = new System.Windows.Forms.Label();
-            this.Lang_Value = new System.Windows.Forms.ComboBox();
             this.atrack_name = new System.Windows.Forms.TextBox();
+            this.Lang_Value = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel_atrack = new System.Windows.Forms.TableLayoutPanel();
+            this.Audiopath = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel_Chapter = new System.Windows.Forms.TableLayoutPanel();
             this.openchapter = new System.Windows.Forms.Button();
-            this.Chapterpath = new System.Windows.Forms.TextBox();
             this.Chapters = new System.Windows.Forms.Label();
+            this.tableLayoutPanel_cpath = new System.Windows.Forms.TableLayoutPanel();
+            this.Chapterpath = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel_output = new System.Windows.Forms.TableLayoutPanel();
             this.selectpath = new System.Windows.Forms.Button();
-            this.outputpath = new System.Windows.Forms.TextBox();
             this.muxed = new System.Windows.Forms.Label();
+            this.tableLayoutPanel_opath = new System.Windows.Forms.TableLayoutPanel();
+            this.outputpath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Bottom = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Button = new System.Windows.Forms.TableLayoutPanel();
             this.Version = new System.Windows.Forms.Label();
-            this.tableLayoutPanel_Delay = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel_vtrack = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel_atrack = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel_cpath = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel_opath = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel_AD = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel_Logs.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel_Video.SuspendLayout();
             this.tableLayoutPanel_Video_Name.SuspendLayout();
+            this.tableLayoutPanel_vtrack.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel_Audio.SuspendLayout();
+            this.tableLayoutPanel_Delay.SuspendLayout();
+            this.tableLayoutPanel_AD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADelay_Value)).BeginInit();
             this.tableLayoutPanel_Audio_Name.SuspendLayout();
+            this.tableLayoutPanel_atrack.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel_Chapter.SuspendLayout();
+            this.tableLayoutPanel_cpath.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel_output.SuspendLayout();
+            this.tableLayoutPanel_opath.SuspendLayout();
             this.tableLayoutPanel_Bottom.SuspendLayout();
             this.tableLayoutPanel_Button.SuspendLayout();
-            this.tableLayoutPanel_Delay.SuspendLayout();
-            this.tableLayoutPanel_vtrack.SuspendLayout();
-            this.tableLayoutPanel_atrack.SuspendLayout();
-            this.tableLayoutPanel_cpath.SuspendLayout();
-            this.tableLayoutPanel_opath.SuspendLayout();
-            this.tableLayoutPanel_AD.SuspendLayout();
             this.SuspendLayout();
             // 
             // About
@@ -255,18 +255,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Video Input";
             // 
-            // Videopath
-            // 
-            this.Videopath.AllowDrop = true;
-            this.Videopath.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Videopath.Location = new System.Drawing.Point(3, 8);
-            this.Videopath.Name = "Videopath";
-            this.Videopath.ReadOnly = true;
-            this.Videopath.Size = new System.Drawing.Size(534, 32);
-            this.Videopath.TabIndex = 1;
-            this.Videopath.DragDrop += new System.Windows.Forms.DragEventHandler(this.Videopath_DragDrop);
-            this.Videopath.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxDragEnter);
-            // 
             // tableLayoutPanel_Video_Name
             // 
             this.tableLayoutPanel_Video_Name.ColumnCount = 3;
@@ -304,7 +292,8 @@
             "30000/1001",
             "30000/1000",
             "50000/1000",
-            "60000/1001"});
+            "60000/1001",
+            "60000/1000"});
             this.FPS_Value.Location = new System.Drawing.Point(3, 8);
             this.FPS_Value.Name = "FPS_Value";
             this.FPS_Value.Size = new System.Drawing.Size(183, 32);
@@ -320,6 +309,33 @@
             this.Vname.Size = new System.Drawing.Size(64, 24);
             this.Vname.TabIndex = 3;
             this.Vname.Text = "Name";
+            // 
+            // tableLayoutPanel_vtrack
+            // 
+            this.tableLayoutPanel_vtrack.ColumnCount = 1;
+            this.tableLayoutPanel_vtrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_vtrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_vtrack.Controls.Add(this.Videopath, 0, 0);
+            this.tableLayoutPanel_vtrack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_vtrack.Location = new System.Drawing.Point(159, 3);
+            this.tableLayoutPanel_vtrack.Name = "tableLayoutPanel_vtrack";
+            this.tableLayoutPanel_vtrack.RowCount = 1;
+            this.tableLayoutPanel_vtrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_vtrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel_vtrack.Size = new System.Drawing.Size(540, 49);
+            this.tableLayoutPanel_vtrack.TabIndex = 4;
+            // 
+            // Videopath
+            // 
+            this.Videopath.AllowDrop = true;
+            this.Videopath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Videopath.Location = new System.Drawing.Point(3, 8);
+            this.Videopath.Name = "Videopath";
+            this.Videopath.ReadOnly = true;
+            this.Videopath.Size = new System.Drawing.Size(534, 32);
+            this.Videopath.TabIndex = 1;
+            this.Videopath.DragDrop += new System.Windows.Forms.DragEventHandler(this.Videopath_DragDrop);
+            this.Videopath.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxDragEnter);
             // 
             // groupBox2
             // 
@@ -356,15 +372,6 @@
             this.tableLayoutPanel_Audio.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel_Audio.Size = new System.Drawing.Size(780, 165);
             this.tableLayoutPanel_Audio.TabIndex = 2;
-            // 
-            // ADelay_Value
-            // 
-            this.ADelay_Value.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ADelay_Value.Location = new System.Drawing.Point(3, 6);
-            this.ADelay_Value.Name = "ADelay_Value";
-            this.ADelay_Value.Size = new System.Drawing.Size(182, 32);
-            this.ADelay_Value.TabIndex = 5;
-            this.ADelay_Value.ValueChanged += new System.EventHandler(this.ADelay_Value_ValueChanged);
             // 
             // openaudio
             // 
@@ -418,17 +425,44 @@
             this.Clear_atrack_name.UseVisualStyleBackColor = true;
             this.Clear_atrack_name.Click += new System.EventHandler(this.Clear_atrack_name_Click);
             // 
-            // Audiopath
+            // tableLayoutPanel_Delay
             // 
-            this.Audiopath.AllowDrop = true;
-            this.Audiopath.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Audiopath.Location = new System.Drawing.Point(3, 8);
-            this.Audiopath.Name = "Audiopath";
-            this.Audiopath.ReadOnly = true;
-            this.Audiopath.Size = new System.Drawing.Size(534, 32);
-            this.Audiopath.TabIndex = 0;
-            this.Audiopath.DragDrop += new System.Windows.Forms.DragEventHandler(this.Audiopath_DragDrop);
-            this.Audiopath.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxDragEnter);
+            this.tableLayoutPanel_Delay.ColumnCount = 1;
+            this.tableLayoutPanel_Delay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Delay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_Delay.Controls.Add(this.tableLayoutPanel_AD, 0, 0);
+            this.tableLayoutPanel_Delay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_Delay.Location = new System.Drawing.Point(159, 112);
+            this.tableLayoutPanel_Delay.Name = "tableLayoutPanel_Delay";
+            this.tableLayoutPanel_Delay.RowCount = 1;
+            this.tableLayoutPanel_Delay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Delay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel_Delay.Size = new System.Drawing.Size(540, 50);
+            this.tableLayoutPanel_Delay.TabIndex = 4;
+            // 
+            // tableLayoutPanel_AD
+            // 
+            this.tableLayoutPanel_AD.ColumnCount = 1;
+            this.tableLayoutPanel_AD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_AD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_AD.Controls.Add(this.ADelay_Value, 0, 0);
+            this.tableLayoutPanel_AD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_AD.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel_AD.Name = "tableLayoutPanel_AD";
+            this.tableLayoutPanel_AD.RowCount = 1;
+            this.tableLayoutPanel_AD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_AD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel_AD.Size = new System.Drawing.Size(534, 44);
+            this.tableLayoutPanel_AD.TabIndex = 0;
+            // 
+            // ADelay_Value
+            // 
+            this.ADelay_Value.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ADelay_Value.Location = new System.Drawing.Point(3, 6);
+            this.ADelay_Value.Name = "ADelay_Value";
+            this.ADelay_Value.Size = new System.Drawing.Size(182, 32);
+            this.ADelay_Value.TabIndex = 5;
+            this.ADelay_Value.ValueChanged += new System.EventHandler(this.ADelay_Value_ValueChanged);
             // 
             // tableLayoutPanel_Audio_Name
             // 
@@ -457,6 +491,14 @@
             this.Aname.Size = new System.Drawing.Size(64, 24);
             this.Aname.TabIndex = 1;
             this.Aname.Text = "Name";
+            // 
+            // atrack_name
+            // 
+            this.atrack_name.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.atrack_name.Location = new System.Drawing.Point(300, 8);
+            this.atrack_name.Name = "atrack_name";
+            this.atrack_name.Size = new System.Drawing.Size(237, 32);
+            this.atrack_name.TabIndex = 2;
             // 
             // Lang_Value
             // 
@@ -654,13 +696,32 @@
             this.Lang_Value.TabIndex = 0;
             this.Lang_Value.SelectedIndexChanged += new System.EventHandler(this.Lang_Value_SelectedIndexChanged);
             // 
-            // atrack_name
+            // tableLayoutPanel_atrack
             // 
-            this.atrack_name.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.atrack_name.Location = new System.Drawing.Point(300, 8);
-            this.atrack_name.Name = "atrack_name";
-            this.atrack_name.Size = new System.Drawing.Size(237, 32);
-            this.atrack_name.TabIndex = 2;
+            this.tableLayoutPanel_atrack.ColumnCount = 1;
+            this.tableLayoutPanel_atrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_atrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_atrack.Controls.Add(this.Audiopath, 0, 0);
+            this.tableLayoutPanel_atrack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_atrack.Location = new System.Drawing.Point(159, 3);
+            this.tableLayoutPanel_atrack.Name = "tableLayoutPanel_atrack";
+            this.tableLayoutPanel_atrack.RowCount = 1;
+            this.tableLayoutPanel_atrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_atrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel_atrack.Size = new System.Drawing.Size(540, 48);
+            this.tableLayoutPanel_atrack.TabIndex = 7;
+            // 
+            // Audiopath
+            // 
+            this.Audiopath.AllowDrop = true;
+            this.Audiopath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Audiopath.Location = new System.Drawing.Point(3, 8);
+            this.Audiopath.Name = "Audiopath";
+            this.Audiopath.ReadOnly = true;
+            this.Audiopath.Size = new System.Drawing.Size(534, 32);
+            this.Audiopath.TabIndex = 0;
+            this.Audiopath.DragDrop += new System.Windows.Forms.DragEventHandler(this.Audiopath_DragDrop);
+            this.Audiopath.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxDragEnter);
             // 
             // groupBox3
             // 
@@ -703,6 +764,31 @@
             this.openchapter.UseVisualStyleBackColor = true;
             this.openchapter.Click += new System.EventHandler(this.openchapter_Click);
             // 
+            // Chapters
+            // 
+            this.Chapters.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Chapters.AutoSize = true;
+            this.Chapters.Location = new System.Drawing.Point(3, 15);
+            this.Chapters.Name = "Chapters";
+            this.Chapters.Size = new System.Drawing.Size(135, 24);
+            this.Chapters.TabIndex = 0;
+            this.Chapters.Text = "Chapters File";
+            // 
+            // tableLayoutPanel_cpath
+            // 
+            this.tableLayoutPanel_cpath.ColumnCount = 1;
+            this.tableLayoutPanel_cpath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_cpath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_cpath.Controls.Add(this.Chapterpath, 0, 0);
+            this.tableLayoutPanel_cpath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_cpath.Location = new System.Drawing.Point(159, 3);
+            this.tableLayoutPanel_cpath.Name = "tableLayoutPanel_cpath";
+            this.tableLayoutPanel_cpath.RowCount = 1;
+            this.tableLayoutPanel_cpath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_cpath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel_cpath.Size = new System.Drawing.Size(540, 49);
+            this.tableLayoutPanel_cpath.TabIndex = 2;
+            // 
             // Chapterpath
             // 
             this.Chapterpath.AllowDrop = true;
@@ -714,16 +800,6 @@
             this.Chapterpath.TabIndex = 0;
             this.Chapterpath.DragDrop += new System.Windows.Forms.DragEventHandler(this.Chapterpath_DragDrop);
             this.Chapterpath.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxDragEnter);
-            // 
-            // Chapters
-            // 
-            this.Chapters.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Chapters.AutoSize = true;
-            this.Chapters.Location = new System.Drawing.Point(3, 15);
-            this.Chapters.Name = "Chapters";
-            this.Chapters.Size = new System.Drawing.Size(135, 24);
-            this.Chapters.TabIndex = 0;
-            this.Chapters.Text = "Chapters File";
             // 
             // groupBox5
             // 
@@ -766,16 +842,6 @@
             this.selectpath.UseVisualStyleBackColor = true;
             this.selectpath.Click += new System.EventHandler(this.selectpath_Click);
             // 
-            // outputpath
-            // 
-            this.outputpath.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.outputpath.Location = new System.Drawing.Point(3, 8);
-            this.outputpath.Name = "outputpath";
-            this.outputpath.ReadOnly = true;
-            this.outputpath.Size = new System.Drawing.Size(534, 32);
-            this.outputpath.TabIndex = 0;
-            this.outputpath.TextChanged += new System.EventHandler(this.outputpath_TextChanged);
-            // 
             // muxed
             // 
             this.muxed.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -785,6 +851,31 @@
             this.muxed.Size = new System.Drawing.Size(138, 24);
             this.muxed.TabIndex = 0;
             this.muxed.Text = "Muxed Output";
+            // 
+            // tableLayoutPanel_opath
+            // 
+            this.tableLayoutPanel_opath.ColumnCount = 1;
+            this.tableLayoutPanel_opath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_opath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_opath.Controls.Add(this.outputpath, 0, 0);
+            this.tableLayoutPanel_opath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_opath.Location = new System.Drawing.Point(159, 3);
+            this.tableLayoutPanel_opath.Name = "tableLayoutPanel_opath";
+            this.tableLayoutPanel_opath.RowCount = 1;
+            this.tableLayoutPanel_opath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_opath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel_opath.Size = new System.Drawing.Size(540, 49);
+            this.tableLayoutPanel_opath.TabIndex = 2;
+            // 
+            // outputpath
+            // 
+            this.outputpath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.outputpath.Location = new System.Drawing.Point(3, 8);
+            this.outputpath.Name = "outputpath";
+            this.outputpath.ReadOnly = true;
+            this.outputpath.Size = new System.Drawing.Size(534, 32);
+            this.outputpath.TabIndex = 0;
+            this.outputpath.TextChanged += new System.EventHandler(this.outputpath_TextChanged);
             // 
             // tableLayoutPanel_Bottom
             // 
@@ -841,96 +932,6 @@
             this.Version.TabIndex = 3;
             this.Version.Text = "v1.2";
             // 
-            // tableLayoutPanel_Delay
-            // 
-            this.tableLayoutPanel_Delay.ColumnCount = 1;
-            this.tableLayoutPanel_Delay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Delay.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_Delay.Controls.Add(this.tableLayoutPanel_AD, 0, 0);
-            this.tableLayoutPanel_Delay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Delay.Location = new System.Drawing.Point(159, 112);
-            this.tableLayoutPanel_Delay.Name = "tableLayoutPanel_Delay";
-            this.tableLayoutPanel_Delay.RowCount = 1;
-            this.tableLayoutPanel_Delay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Delay.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_Delay.Size = new System.Drawing.Size(540, 50);
-            this.tableLayoutPanel_Delay.TabIndex = 4;
-            // 
-            // tableLayoutPanel_vtrack
-            // 
-            this.tableLayoutPanel_vtrack.ColumnCount = 1;
-            this.tableLayoutPanel_vtrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_vtrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_vtrack.Controls.Add(this.Videopath, 0, 0);
-            this.tableLayoutPanel_vtrack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_vtrack.Location = new System.Drawing.Point(159, 3);
-            this.tableLayoutPanel_vtrack.Name = "tableLayoutPanel_vtrack";
-            this.tableLayoutPanel_vtrack.RowCount = 1;
-            this.tableLayoutPanel_vtrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_vtrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_vtrack.Size = new System.Drawing.Size(540, 49);
-            this.tableLayoutPanel_vtrack.TabIndex = 4;
-            // 
-            // tableLayoutPanel_atrack
-            // 
-            this.tableLayoutPanel_atrack.ColumnCount = 1;
-            this.tableLayoutPanel_atrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_atrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_atrack.Controls.Add(this.Audiopath, 0, 0);
-            this.tableLayoutPanel_atrack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_atrack.Location = new System.Drawing.Point(159, 3);
-            this.tableLayoutPanel_atrack.Name = "tableLayoutPanel_atrack";
-            this.tableLayoutPanel_atrack.RowCount = 1;
-            this.tableLayoutPanel_atrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_atrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_atrack.Size = new System.Drawing.Size(540, 48);
-            this.tableLayoutPanel_atrack.TabIndex = 7;
-            // 
-            // tableLayoutPanel_cpath
-            // 
-            this.tableLayoutPanel_cpath.ColumnCount = 1;
-            this.tableLayoutPanel_cpath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_cpath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_cpath.Controls.Add(this.Chapterpath, 0, 0);
-            this.tableLayoutPanel_cpath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_cpath.Location = new System.Drawing.Point(159, 3);
-            this.tableLayoutPanel_cpath.Name = "tableLayoutPanel_cpath";
-            this.tableLayoutPanel_cpath.RowCount = 1;
-            this.tableLayoutPanel_cpath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_cpath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_cpath.Size = new System.Drawing.Size(540, 49);
-            this.tableLayoutPanel_cpath.TabIndex = 2;
-            // 
-            // tableLayoutPanel_opath
-            // 
-            this.tableLayoutPanel_opath.ColumnCount = 1;
-            this.tableLayoutPanel_opath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_opath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_opath.Controls.Add(this.outputpath, 0, 0);
-            this.tableLayoutPanel_opath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_opath.Location = new System.Drawing.Point(159, 3);
-            this.tableLayoutPanel_opath.Name = "tableLayoutPanel_opath";
-            this.tableLayoutPanel_opath.RowCount = 1;
-            this.tableLayoutPanel_opath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_opath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_opath.Size = new System.Drawing.Size(540, 49);
-            this.tableLayoutPanel_opath.TabIndex = 2;
-            // 
-            // tableLayoutPanel_AD
-            // 
-            this.tableLayoutPanel_AD.ColumnCount = 1;
-            this.tableLayoutPanel_AD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_AD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_AD.Controls.Add(this.ADelay_Value, 0, 0);
-            this.tableLayoutPanel_AD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_AD.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel_AD.Name = "tableLayoutPanel_AD";
-            this.tableLayoutPanel_AD.RowCount = 1;
-            this.tableLayoutPanel_AD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_AD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_AD.Size = new System.Drawing.Size(534, 44);
-            this.tableLayoutPanel_AD.TabIndex = 0;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -953,31 +954,31 @@
             this.tableLayoutPanel_Video.PerformLayout();
             this.tableLayoutPanel_Video_Name.ResumeLayout(false);
             this.tableLayoutPanel_Video_Name.PerformLayout();
+            this.tableLayoutPanel_vtrack.ResumeLayout(false);
+            this.tableLayoutPanel_vtrack.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel_Audio.ResumeLayout(false);
             this.tableLayoutPanel_Audio.PerformLayout();
+            this.tableLayoutPanel_Delay.ResumeLayout(false);
+            this.tableLayoutPanel_AD.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ADelay_Value)).EndInit();
             this.tableLayoutPanel_Audio_Name.ResumeLayout(false);
             this.tableLayoutPanel_Audio_Name.PerformLayout();
+            this.tableLayoutPanel_atrack.ResumeLayout(false);
+            this.tableLayoutPanel_atrack.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel_Chapter.ResumeLayout(false);
             this.tableLayoutPanel_Chapter.PerformLayout();
+            this.tableLayoutPanel_cpath.ResumeLayout(false);
+            this.tableLayoutPanel_cpath.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.tableLayoutPanel_output.ResumeLayout(false);
             this.tableLayoutPanel_output.PerformLayout();
+            this.tableLayoutPanel_opath.ResumeLayout(false);
+            this.tableLayoutPanel_opath.PerformLayout();
             this.tableLayoutPanel_Bottom.ResumeLayout(false);
             this.tableLayoutPanel_Button.ResumeLayout(false);
             this.tableLayoutPanel_Button.PerformLayout();
-            this.tableLayoutPanel_Delay.ResumeLayout(false);
-            this.tableLayoutPanel_vtrack.ResumeLayout(false);
-            this.tableLayoutPanel_vtrack.PerformLayout();
-            this.tableLayoutPanel_atrack.ResumeLayout(false);
-            this.tableLayoutPanel_atrack.PerformLayout();
-            this.tableLayoutPanel_cpath.ResumeLayout(false);
-            this.tableLayoutPanel_cpath.PerformLayout();
-            this.tableLayoutPanel_opath.ResumeLayout(false);
-            this.tableLayoutPanel_opath.PerformLayout();
-            this.tableLayoutPanel_AD.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
