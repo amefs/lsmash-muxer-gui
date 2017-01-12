@@ -928,9 +928,9 @@
             this.Version.Font = new System.Drawing.Font("Consolas", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Version.Location = new System.Drawing.Point(3, 55);
             this.Version.Name = "Version";
-            this.Version.Size = new System.Drawing.Size(58, 24);
+            this.Version.Size = new System.Drawing.Size(70, 24);
             this.Version.TabIndex = 3;
-            this.Version.Text = "v1.2";
+            this.Version.Text = "v1.3b";
             // 
             // Main
             // 

@@ -14,6 +14,8 @@ using MediaInfoLib;
 
 namespace lsmash_gui
 {
+
+    
     public partial class Main : System.Windows.Forms.Form
     {
         public Main()
@@ -65,25 +67,45 @@ namespace lsmash_gui
             //open video file
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
-                Filter = "RAW MPEG-4 AVC|*.264;*.h264;*.avc|RAW MPEG-4 HEVC|*.265;*.hevc|All Files|*.*",
+                Filter = "RAW MPEG-4 AVC|*.264;*.h264;*.avc|RAW MPEG-4 HEVC|*.265;*.hevc|MP4 File|*.mp4|All Files|*.*",
                 RestoreDirectory = true,
                 FilterIndex = 1
             };
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Videopath.Text = openFileDialog1.FileName;
+                lsmash_gui.comm.vparameter = "";
+                bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
                 MediaInfo vfile = new MediaInfo();
                 vfile.Open(Videopath.Text);
                 string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
                 if (FPS =="/")
                     FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate"))*1000).ToString() + "/" + "1000");
+                int vtracksum = 0;
+                int atracksum = 0;
+                if (ifmp4)
+                {
+                    if (vfile.Get(StreamKind.General, 0, "VideoCount") != "")
+                        vtracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "VideoCount"));
+                    if (vfile.Get(StreamKind.General, 0, "AudioCount") != "")
+                        atracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "AudioCount"));
+                    if (vtracksum > 1)
+                        for (int i = 1; i < vtracksum; i++)
+                        {
+                            lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Video, i, "ID") + ":remove");
+                        }
+                    if (atracksum > 0)
+                        for (int i = 0; i < atracksum; i++)
+                        {
+                            lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
+                        }
+                }
                 vfile.Close();
                 FPS_Value.SelectedItem = FPS;
                 outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
-
-        private static readonly HashSet<string> AcceptableVideoExtension = new HashSet<string> { ".avc", ".h264", ".264", ".hevc", ".265" };
+        private static readonly HashSet<string> AcceptableVideoExtension = new HashSet<string> { ".avc", ".h264", ".264", ".hevc", ".265", ".mp4" };
 
         private void Videopath_DragDrop(object sender, DragEventArgs e)
         {
@@ -100,11 +122,32 @@ namespace lsmash_gui
                 if (AcceptableVideoExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Videopath.Text = fileName;
+                    lsmash_gui.comm.vparameter = "";
+                    bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
                     MediaInfo vfile = new MediaInfo();
                     vfile.Open(Videopath.Text);
                     string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
                     if (FPS == "/")
                         FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
+                    int vtracksum = 0;
+                    int atracksum = 0;
+                    if (ifmp4)
+                    {
+                        if (vfile.Get(StreamKind.General, 0, "VideoCount") != "")
+                            vtracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "VideoCount"));
+                        if (vfile.Get(StreamKind.General, 0, "AudioCount") != "")
+                            atracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "AudioCount"));
+                        if (vtracksum > 1)
+                            for (int i = 1; i < vtracksum; i++)
+                            {
+                                lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Video, i, "ID") + ":remove");
+                            }
+                        if (atracksum > 0)
+                            for (int i = 0; i < atracksum; i++)
+                            {
+                                lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
+                            }
+                    }
                     vfile.Close();
                     FPS_Value.SelectedItem = FPS;
                     outputpath.Text = GetOutputFileName(fileName);
@@ -133,7 +176,7 @@ namespace lsmash_gui
             FPS_Value.SelectedItem = null;
         }
 
-        private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".m4a", ".mp3" };
+        private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".m4a", ".mp3", ".mp4" };
         private void Audiopath_DragDrop(object sender, DragEventArgs e)
         {
             //drag video file and confirm format
@@ -149,6 +192,30 @@ namespace lsmash_gui
                 if (AcceptableAudioExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
                 {
                     Audiopath.Text = fileName;
+                    lsmash_gui.comm.aparameter = "";
+                    bool ifmp4 = Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4";
+                    if (ifmp4)
+                    {
+                        MediaInfo afile = new MediaInfo();
+                        afile.Open(Audiopath.Text);
+                        int vtracksum = 0;
+                        int atracksum = 0;
+                        if (afile.Get(StreamKind.General, 0, "VideoCount") !="")
+                            vtracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "VideoCount"));
+                        if (afile.Get(StreamKind.General, 0, "AudioCount") != "")
+                            atracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "AudioCount"));
+                        lsmash_gui.comm.atrackID = afile.Get(StreamKind.Audio, 0, "ID");
+                        if (atracksum > 1)
+                            for (int i = 1; i < atracksum; i++)
+                            {
+                                lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Audio, i, "ID") + ":remove");
+                            }
+                        if (vtracksum > 0)
+                            for (int i = 0; i < vtracksum; i++)
+                            {
+                                lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
+                            }
+                    }
                 }
                 else
                 {
@@ -162,13 +229,37 @@ namespace lsmash_gui
             //open audio file
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
-                Filter = "AAC|*.aac;*.m4a|mp3|*.mp3|All Files|*.*",
+                Filter = "AAC|*.aac;*.m4a|MP3|*.mp3|MP4 File|*.mp4|All Files|*.*",
                 RestoreDirectory = true,
                 FilterIndex = 1
             };
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Audiopath.Text = openFileDialog1.FileName;
+                lsmash_gui.comm.aparameter = "";
+                bool ifmp4 = Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4";
+                if (ifmp4)
+                {
+                    MediaInfo afile = new MediaInfo();
+                    afile.Open(Audiopath.Text);
+                    int vtracksum = 0;
+                    int atracksum = 0;
+                    if (afile.Get(StreamKind.General, 0, "VideoCount") != "")
+                        vtracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "VideoCount"));
+                    if (afile.Get(StreamKind.General, 0, "AudioCount") != "")
+                        atracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "AudioCount"));
+                    lsmash_gui.comm.atrackID = afile.Get(StreamKind.Audio, 0, "ID");
+                    if (atracksum > 1)
+                        for (int i = 1; i < atracksum; i++)
+                        {
+                            lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Audio, i, "ID") + ":remove");
+                        }
+                    if (vtracksum > 0)
+                        for (int i = 0; i < vtracksum; i++)
+                        {
+                            lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
+                        }
+                }
             }
         }
 
@@ -263,6 +354,9 @@ namespace lsmash_gui
             bool vtrack_flag = false;
             bool atrack_flag = false;
             bool vfps_flag = false;
+            bool ifvmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
+            bool ifamp4 = Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4";
+            bool ifmp4 = ifvmp4 || ifamp4;
             string arg_muxer = "";
             if (outputpath.Text == "")
             {
@@ -273,14 +367,23 @@ namespace lsmash_gui
                 arg_muxer = ("");
                 //main tracks
                 if (Chapterpath.Text != "")
+                {
                     arg_muxer = (arg_muxer + " --chapter \"" + Chapterpath.Text + "\"");
+                    if (ifmp4)
+                        arg_muxer = (arg_muxer + " --chapter-track 10");
+                }
                 if (Videopath.Text != "")
                 {
                     arg_muxer = (arg_muxer + " -i \"" + Videopath.Text + "\"");
                     vtrack_flag = true;
                 }
+                //remove extra tracks
+                if (vtrack_flag && ifmp4)
+                {
+                    arg_muxer = (arg_muxer + lsmash_gui.comm.vparameter);
+                }
                 //video track additions
-                if (vtrack_flag && FPS_Value.SelectedItem != null)
+                if (vtrack_flag && FPS_Value.SelectedItem != null && !ifmp4)
                 {
                     arg_muxer = (arg_muxer + "?fps=" + FPS_Value.SelectedItem);
                     vfps_flag = true;
@@ -289,6 +392,8 @@ namespace lsmash_gui
                 {
                     if (vfps_flag == true)
                         arg_muxer = (arg_muxer + ",handler=" + vtrack_name.Text);
+                    else if (ifmp4)
+                        arg_muxer = (arg_muxer + "?1:handler=" + vtrack_name.Text);
                     else
                         arg_muxer = (arg_muxer + "?handler=" + vtrack_name.Text);
                 }
@@ -297,31 +402,49 @@ namespace lsmash_gui
                     arg_muxer = (arg_muxer + " -i \"" + Audiopath.Text + "\"");
                     atrack_flag = true;
                 }
+                //remove extra tracks
+                if (vtrack_flag && ifmp4)
+                {
+                    arg_muxer = (arg_muxer + lsmash_gui.comm.aparameter);
+                }
                 //audio track additions
                 if (atrack_flag && Lang_Value.SelectedItem != null)
                 {
-                    arg_muxer = (arg_muxer + "?language=" + Lang_Value.SelectedItem);
+                    if (ifamp4)
+                        arg_muxer = (arg_muxer + "?" + lsmash_gui.comm.atrackID + ":language=" + Lang_Value.SelectedItem);
+                    else
+                        arg_muxer = (arg_muxer + "?1:language=" + Lang_Value.SelectedItem);
                 }
                 else if (atrack_flag)
                 {
-                    arg_muxer = (arg_muxer + "?language=jpn");
+                    if (ifamp4)
+                        arg_muxer = (arg_muxer + "?" + lsmash_gui.comm.atrackID + ":language=jpn");
+                    else
+                        arg_muxer = (arg_muxer + "?1:language=jpn");
                 }
                 if (atrack_flag && atrack_name.Text != "")
                 {
                     arg_muxer = (arg_muxer + ",handler=" + atrack_name.Text);
                 }
-                if (atrack_flag && ADelay_Value.Value != 0)
+                if (atrack_flag && ADelay_Value.Value != 0 && !ifmp4)
                 {
                     arg_muxer = (arg_muxer + ",encoder-delay=" + ADelay_Value.Value.ToString());
                 }
                 //output
                 if (vtrack_flag || atrack_flag)
                 {
-                    arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
-                    //logs.Text = arg_muxer;
-                    logs.Text = ("Processing....");
-                    ExcuteDosCommand(arg_muxer);
-                    logs.Text = ("Finished.");
+                    if (!ifvmp4 && ifamp4)
+                        MessageBox.Show("Can't remux RAW Video with mp4 Audio File!");
+                    else
+                    {
+                        arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
+                        logs.Text = ("Processing....");
+                        logs.Text += ("\n\t" + arg_muxer);
+                        Start.Enabled = false;
+                        ExcuteDosCommand(arg_muxer);
+                        Start.Enabled = true;
+                        logs.Text = ("Finished.");
+                    }
                 }
                 else
                     MessageBox.Show("Nothing to mux!");
@@ -341,13 +464,19 @@ namespace lsmash_gui
 
         private void ExcuteDosCommand(string cmd)
         {
+            bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
+            string Excutable = "";
+            if (ifmp4)
+                Excutable = "remuxer";
+            else
+                Excutable = "muxer";
             try
             {
                 Process p = new Process
                 {
                     StartInfo =
                     {
-                        FileName = Application.StartupPath + "\\muxer.exe",
+                        FileName = Application.StartupPath + "\\"+ Excutable,
                         Arguments = cmd,
                         UseShellExecute = false,
                         RedirectStandardInput = true,
@@ -396,5 +525,12 @@ namespace lsmash_gui
             ADelay_Value.Value = 0;
             logs.Text = "";
         }
+    }
+    public static class comm
+    {
+        public static string vparameter;
+        public static string vtrackID;
+        public static string aparameter;
+        public static string atrackID;
     }
 }
