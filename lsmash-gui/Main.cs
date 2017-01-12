@@ -176,7 +176,7 @@ namespace lsmash_gui
             FPS_Value.SelectedItem = null;
         }
 
-        private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".m4a", ".mp3" };
+        private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".m4a", ".mp3", ".mp4" };
         private void Audiopath_DragDrop(object sender, DragEventArgs e)
         {
             //drag video file and confirm format
@@ -206,12 +206,12 @@ namespace lsmash_gui
                             atracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "AudioCount"));
                         lsmash_gui.comm.atrackID = afile.Get(StreamKind.Audio, 0, "ID");
                         if (atracksum > 1)
-                            for (int i = 0; i < atracksum; i++)
+                            for (int i = 1; i < atracksum; i++)
                             {
                                 lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Audio, i, "ID") + ":remove");
                             }
-                        if (atracksum > 0)
-                            for (int i = 1; i < vtracksum; i++)
+                        if (vtracksum > 0)
+                            for (int i = 0; i < vtracksum; i++)
                             {
                                 lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
                             }
@@ -229,7 +229,7 @@ namespace lsmash_gui
             //open audio file
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
-                Filter = "AAC|*.aac;*.m4a|MP3|*.mp3|All Files|*.*",
+                Filter = "AAC|*.aac;*.m4a|MP3|*.mp3|MP4 File|*.mp4|All Files|*.*",
                 RestoreDirectory = true,
                 FilterIndex = 1
             };
@@ -250,12 +250,12 @@ namespace lsmash_gui
                         atracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "AudioCount"));
                     lsmash_gui.comm.atrackID = afile.Get(StreamKind.Audio, 0, "ID");
                     if (atracksum > 1)
-                        for (int i = 0; i < atracksum; i++)
+                        for (int i = 1; i < atracksum; i++)
                         {
                             lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Audio, i, "ID") + ":remove");
                         }
-                    if (atracksum > 0)
-                        for (int i = 1; i < vtracksum; i++)
+                    if (vtracksum > 0)
+                        for (int i = 0; i < vtracksum; i++)
                         {
                             lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
                         }
@@ -354,8 +354,9 @@ namespace lsmash_gui
             bool vtrack_flag = false;
             bool atrack_flag = false;
             bool vfps_flag = false;
-            bool ifmp4 = (Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4" || Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4");
+            bool ifvmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
             bool ifamp4 = Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4";
+            bool ifmp4 = ifvmp4 || ifamp4;
             string arg_muxer = "";
             if (outputpath.Text == "")
             {
@@ -432,13 +433,18 @@ namespace lsmash_gui
                 //output
                 if (vtrack_flag || atrack_flag)
                 {
-                    arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
-                    logs.Text = ("Processing....");
-                    //logs.Text += ("/n/t" + arg_muxer);
-                    Start.Enabled = false;
-                    ExcuteDosCommand(arg_muxer);
-                    Start.Enabled = true;
-                    logs.Text = ("Finished.");
+                    if (!ifvmp4 && ifamp4)
+                        MessageBox.Show("Can't remux RAW Video with mp4 Audio File!");
+                    else
+                    {
+                        arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
+                        logs.Text = ("Processing....");
+                        logs.Text += ("\n\t" + arg_muxer);
+                        Start.Enabled = false;
+                        ExcuteDosCommand(arg_muxer);
+                        Start.Enabled = true;
+                        logs.Text = ("Finished.");
+                    }
                 }
                 else
                     MessageBox.Show("Nothing to mux!");
