@@ -930,7 +930,7 @@
             this.Version.Name = "Version";
             this.Version.Size = new System.Drawing.Size(70, 24);
             this.Version.TabIndex = 3;
-            this.Version.Text = "v1.3b";
+            this.Version.Text = "v1.3c";
             // 
             // Main
             // 

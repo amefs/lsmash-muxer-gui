@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
-using System.Threading;
 using System.Windows.Forms;
 using MediaInfoLib;
 
@@ -16,7 +15,7 @@ using MediaInfoLib;
 namespace lsmash_gui
 {
 
-    
+
     public partial class Main : System.Windows.Forms.Form
     {
         public Main()
@@ -79,9 +78,6 @@ namespace lsmash_gui
                 bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
                 MediaInfo vfile = new MediaInfo();
                 vfile.Open(Videopath.Text);
-                string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
-                if (FPS =="/")
-                    FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate"))*1000).ToString() + "/" + "1000");
                 int vtracksum = 0;
                 int atracksum = 0;
                 if (ifmp4)
@@ -100,9 +96,20 @@ namespace lsmash_gui
                         {
                             lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
                         }
+                    if (vtracksum == 0)
+                    {
+                        Videopath.Text = "";
+                        MessageBox.Show("Not a Video File!");
+                    }
+                }
+                if (vtracksum != 0)
+                {
+                    string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
+                    if (FPS == "/")
+                        FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
+                    FPS_Value.SelectedItem = FPS;
                 }
                 vfile.Close();
-                FPS_Value.SelectedItem = FPS;
                 outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
             }
         }
@@ -127,9 +134,6 @@ namespace lsmash_gui
                     bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
                     MediaInfo vfile = new MediaInfo();
                     vfile.Open(Videopath.Text);
-                    string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
-                    if (FPS == "/")
-                        FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
                     int vtracksum = 0;
                     int atracksum = 0;
                     if (ifmp4)
@@ -148,9 +152,20 @@ namespace lsmash_gui
                             {
                                 lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
                             }
+                        if (vtracksum == 0)
+                        {
+                            Videopath.Text = "";
+                            MessageBox.Show("Not a Video File!");
+                        }
                     }
-                    vfile.Close();
-                    FPS_Value.SelectedItem = FPS;
+                    if (vtracksum != 0)
+                    {
+                        string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
+                        if (FPS == "/")
+                            FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
+                        FPS_Value.SelectedItem = FPS;
+                    }
+                        vfile.Close();
                     outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
@@ -201,7 +216,7 @@ namespace lsmash_gui
                         afile.Open(Audiopath.Text);
                         int vtracksum = 0;
                         int atracksum = 0;
-                        if (afile.Get(StreamKind.General, 0, "VideoCount") !="")
+                        if (afile.Get(StreamKind.General, 0, "VideoCount") != "")
                             vtracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "VideoCount"));
                         if (afile.Get(StreamKind.General, 0, "AudioCount") != "")
                             atracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "AudioCount"));
@@ -216,7 +231,12 @@ namespace lsmash_gui
                             {
                                 lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
                             }
-                    }
+                        if (atracksum == 0)
+                        {
+                            Audiopath.Text = "";
+                            MessageBox.Show("Not a Audio File!");
+                        }
+                    } 
                 }
                 else
                 {
@@ -260,6 +280,11 @@ namespace lsmash_gui
                         {
                             lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
                         }
+                    if (atracksum == 0)
+                    {
+                        Audiopath.Text = "";
+                        MessageBox.Show("Not a Audio File!");
+                    }
                 }
             }
         }
@@ -440,24 +465,17 @@ namespace lsmash_gui
                     {
                         arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
                         logs.Text = ("Processing....");
-                        //logs.Text += ("\n\t" + arg_muxer);
+                        //logs.Text += ("\n\r" + arg_muxer);
                         Start.Enabled = false;
-                        //ExcuteDosCommand(arg_muxer);
-                        Thread thread = new Thread(ThreadCallBack);
-                        thread.Start(arg_muxer);
+                        ExcuteDosCommand(arg_muxer);
                         Start.Enabled = true;
+                        logs.Text = ("Finished.");
                     }
                 }
                 else
                     MessageBox.Show("Nothing to mux!");
             }
 
-        }
-
-        public delegate void ParameterizedThreadStart(object obj);
-        void ThreadCallBack(object arg)
-        {
-            ExcuteDosCommand(arg);
         }
 
         private void Lang_Value_SelectedIndexChanged(object sender, EventArgs e)
@@ -470,9 +488,8 @@ namespace lsmash_gui
 
         }
 
-        private void ExcuteDosCommand(object arg)
+        private void ExcuteDosCommand(string cmd)
         {
-            string cmd = (String)arg;
             bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
             string Excutable = "";
             if (ifmp4)
@@ -501,7 +518,6 @@ namespace lsmash_gui
                 p.BeginOutputReadLine();
                 p.WaitForExit();
                 p.Close();
-                logs.Text = ("Finished.");
             }
 
             catch (Exception ex)
@@ -515,8 +531,10 @@ namespace lsmash_gui
             outputBuilder = new StringBuilder();
             if (!String.IsNullOrEmpty(e.Data))
             {
-                //this.BeginInvoke(new Action(() => { outputBuilder.Append(e.Data); }));
-                //logs.Text = "\r\n" + outputBuilder.ToString();
+                //this.BeginInvoke(new Action(() => { this.logs.Text= e.Data; }));
+                //logs.Text = e.Data;
+                //outputBuilder.Append(e.Data);
+                //logs.Text += "\r" + outputBuilder.ToString();
             }
         }
 
