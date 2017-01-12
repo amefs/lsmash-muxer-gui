@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("lsmash-gui")]
-[assembly: AssemblyCopyright("Copyright ©  2017 EFS")]
+[assembly: AssemblyCopyright("Copyright ©  2016-2017 EFS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

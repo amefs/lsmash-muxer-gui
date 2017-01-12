@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Forms;
 using MediaInfoLib;
 
@@ -439,17 +440,24 @@ namespace lsmash_gui
                     {
                         arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
                         logs.Text = ("Processing....");
-                        logs.Text += ("\n\t" + arg_muxer);
+                        //logs.Text += ("\n\t" + arg_muxer);
                         Start.Enabled = false;
-                        ExcuteDosCommand(arg_muxer);
+                        //ExcuteDosCommand(arg_muxer);
+                        Thread thread = new Thread(ThreadCallBack);
+                        thread.Start(arg_muxer);
                         Start.Enabled = true;
-                        logs.Text = ("Finished.");
                     }
                 }
                 else
                     MessageBox.Show("Nothing to mux!");
             }
 
+        }
+
+        public delegate void ParameterizedThreadStart(object obj);
+        void ThreadCallBack(object arg)
+        {
+            ExcuteDosCommand(arg);
         }
 
         private void Lang_Value_SelectedIndexChanged(object sender, EventArgs e)
@@ -462,8 +470,9 @@ namespace lsmash_gui
 
         }
 
-        private void ExcuteDosCommand(string cmd)
+        private void ExcuteDosCommand(object arg)
         {
+            string cmd = (String)arg;
             bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
             string Excutable = "";
             if (ifmp4)
@@ -492,6 +501,7 @@ namespace lsmash_gui
                 p.BeginOutputReadLine();
                 p.WaitForExit();
                 p.Close();
+                logs.Text = ("Finished.");
             }
 
             catch (Exception ex)
@@ -505,10 +515,8 @@ namespace lsmash_gui
             outputBuilder = new StringBuilder();
             if (!String.IsNullOrEmpty(e.Data))
             {
-                //this.BeginInvoke(new Action(() => { this.logs.Text= e.Data; }));
-                //logs.Text = e.Data;
-                //outputBuilder.Append(e.Data);
-                //logs.Text += "\r" + outputBuilder.ToString();
+                //this.BeginInvoke(new Action(() => { outputBuilder.Append(e.Data); }));
+                //logs.Text = "\r\n" + outputBuilder.ToString();
             }
         }
 
