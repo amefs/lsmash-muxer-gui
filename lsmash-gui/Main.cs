@@ -83,15 +83,12 @@ namespace lsmash_gui
                     FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate"))*1000).ToString() + "/" + "1000");
                 int vtracksum = 0;
                 int atracksum = 0;
-                int ctracksum = 0;
                 if (ifmp4)
                 {
                     if (vfile.Get(StreamKind.General, 0, "VideoCount") != "")
                         vtracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "VideoCount"));
                     if (vfile.Get(StreamKind.General, 0, "AudioCount") != "")
                         atracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "AudioCount"));
-                    if (vfile.Get(StreamKind.General, 0, "MenuCount") != "")
-                        ctracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "MenuCount"));
                     if (vtracksum > 1)
                         for (int i = 1; i < vtracksum; i++)
                         {
@@ -101,11 +98,6 @@ namespace lsmash_gui
                         for (int i = 0; i < atracksum; i++)
                         {
                             lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
-                        }
-                    if (ctracksum > 0)
-                        for (int i = 0; i < ctracksum; i++)
-                        {
-                            lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Menu, i, "ID") + ":remove");
                         }
                 }
                 vfile.Close();
@@ -139,15 +131,12 @@ namespace lsmash_gui
                         FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
                     int vtracksum = 0;
                     int atracksum = 0;
-                    int ctracksum = 0;
                     if (ifmp4)
                     {
                         if (vfile.Get(StreamKind.General, 0, "VideoCount") != "")
                             vtracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "VideoCount"));
                         if (vfile.Get(StreamKind.General, 0, "AudioCount") != "")
                             atracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "AudioCount"));
-                        if (vfile.Get(StreamKind.General, 0, "MenuCount") != "")
-                            ctracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "MenuCount"));
                         if (vtracksum > 1)
                             for (int i = 1; i < vtracksum; i++)
                             {
@@ -157,11 +146,6 @@ namespace lsmash_gui
                             for (int i = 0; i < atracksum; i++)
                             {
                                 lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
-                            }
-                        if (ctracksum > 0)
-                            for (int i = 0; i < ctracksum; i++)
-                            {
-                                lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Menu, i, "ID") + ":remove");
                             }
                     }
                     vfile.Close();
@@ -216,13 +200,10 @@ namespace lsmash_gui
                         afile.Open(Audiopath.Text);
                         int vtracksum = 0;
                         int atracksum = 0;
-                        int ctracksum = 0;
                         if (afile.Get(StreamKind.General, 0, "VideoCount") !="")
                             vtracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "VideoCount"));
                         if (afile.Get(StreamKind.General, 0, "AudioCount") != "")
                             atracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "AudioCount"));
-                        if (afile.Get(StreamKind.General, 0, "MenuCount") != "")
-                            ctracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "MenuCount"));
                         lsmash_gui.comm.atrackID = afile.Get(StreamKind.Audio, 0, "ID");
                         if (atracksum > 1)
                             for (int i = 0; i < atracksum; i++)
@@ -233,11 +214,6 @@ namespace lsmash_gui
                             for (int i = 1; i < vtracksum; i++)
                             {
                                 lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
-                            }
-                        if (ctracksum > 0)
-                            for (int i = 0; i < ctracksum; i++)
-                            {
-                                lsmash_gui.comm.vparameter += ("?" + afile.Get(StreamKind.Menu, i, "ID") + ":remove");
                             }
                     }
                 }
@@ -268,13 +244,10 @@ namespace lsmash_gui
                     afile.Open(Audiopath.Text);
                     int vtracksum = 0;
                     int atracksum = 0;
-                    int ctracksum = 0;
                     if (afile.Get(StreamKind.General, 0, "VideoCount") != "")
                         vtracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "VideoCount"));
                     if (afile.Get(StreamKind.General, 0, "AudioCount") != "")
                         atracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "AudioCount"));
-                    if (afile.Get(StreamKind.General, 0, "MenuCount") != "")
-                        ctracksum = (int)Convert.ToSingle(afile.Get(StreamKind.General, 0, "MenuCount"));
                     lsmash_gui.comm.atrackID = afile.Get(StreamKind.Audio, 0, "ID");
                     if (atracksum > 1)
                         for (int i = 0; i < atracksum; i++)
@@ -285,11 +258,6 @@ namespace lsmash_gui
                         for (int i = 1; i < vtracksum; i++)
                         {
                             lsmash_gui.comm.aparameter += ("?" + afile.Get(StreamKind.Video, i, "ID") + ":remove");
-                        }
-                    if (ctracksum > 0)
-                        for (int i = 0; i < ctracksum; i++)
-                        {
-                            lsmash_gui.comm.vparameter += ("?" + afile.Get(StreamKind.Menu, i, "ID") + ":remove");
                         }
                 }
             }
@@ -398,7 +366,11 @@ namespace lsmash_gui
                 arg_muxer = ("");
                 //main tracks
                 if (Chapterpath.Text != "")
+                {
                     arg_muxer = (arg_muxer + " --chapter \"" + Chapterpath.Text + "\"");
+                    if (ifmp4)
+                        arg_muxer = (arg_muxer + " --chapter-track 10");
+                }
                 if (Videopath.Text != "")
                 {
                     arg_muxer = (arg_muxer + " -i \"" + Videopath.Text + "\"");
@@ -462,6 +434,7 @@ namespace lsmash_gui
                 {
                     arg_muxer = (arg_muxer + " -o \"" + outputpath.Text + "\"");
                     logs.Text = ("Processing....");
+                    //logs.Text += ("/n/t" + arg_muxer);
                     Start.Enabled = false;
                     ExcuteDosCommand(arg_muxer);
                     Start.Enabled = true;
