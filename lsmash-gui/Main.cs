@@ -102,7 +102,7 @@ namespace lsmash_gui
                         MessageBox.Show("Not a Video File!");
                     }
                 }
-                if (vtracksum != 0)
+                if (vtracksum != 0 || !ifmp4)
                 {
                     string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
                     if (FPS == "/")
@@ -158,7 +158,7 @@ namespace lsmash_gui
                             MessageBox.Show("Not a Video File!");
                         }
                     }
-                    if (vtracksum != 0)
+                    if (vtracksum != 0 || !ifmp4)
                     {
                         string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
                         if (FPS == "/")
