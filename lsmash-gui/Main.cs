@@ -64,8 +64,6 @@ namespace lsmash_gui
 
         private void openvideo_Click(object sender, EventArgs e)
         {
-            bool mediainfo = false;
-            mediainfo = File.Exists(Application.StartupPath + "\\MediaInfo.dll");
             //open video file
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
@@ -104,7 +102,7 @@ namespace lsmash_gui
                         MessageBox.Show("Not a Video File!");
                     }
                 }
-                if ((vtracksum != 0 || !ifmp4) && mediainfo)
+                if (vtracksum != 0 || !ifmp4)
                 {
                     string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
                     if (FPS == "/")
@@ -119,8 +117,6 @@ namespace lsmash_gui
 
         private void Videopath_DragDrop(object sender, DragEventArgs e)
         {
-            bool mediainfo = false;
-            mediainfo = File.Exists(Application.StartupPath + "\\MediaInfo.dll");
             //drag video file and confirm format
             string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
             //confirm if path is a directort
@@ -162,7 +158,7 @@ namespace lsmash_gui
                             MessageBox.Show("Not a Video File!");
                         }
                     }
-                    if ((vtracksum != 0 || !ifmp4) && mediainfo)
+                    if (vtracksum != 0 || !ifmp4)
                     {
                         string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
                         if (FPS == "/")
