@@ -47,11 +47,6 @@
             this.Vname = new System.Windows.Forms.Label();
             this.tableLayoutPanel_vtrack = new System.Windows.Forms.TableLayoutPanel();
             this.Videopath = new System.Windows.Forms.TextBox();
-            this.PAR = new System.Windows.Forms.Label();
-            this.tableLayoutPanel_PAR = new System.Windows.Forms.TableLayoutPanel();
-            this.divide = new System.Windows.Forms.Label();
-            this.PAR_numerator = new System.Windows.Forms.TextBox();
-            this.PAR_denominator = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel_Audio = new System.Windows.Forms.TableLayoutPanel();
             this.openaudio = new System.Windows.Forms.Button();
@@ -89,7 +84,6 @@
             this.tableLayoutPanel_Video.SuspendLayout();
             this.tableLayoutPanel_Video_Name.SuspendLayout();
             this.tableLayoutPanel_vtrack.SuspendLayout();
-            this.tableLayoutPanel_PAR.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel_Audio.SuspendLayout();
             this.tableLayoutPanel_Delay.SuspendLayout();
@@ -148,9 +142,9 @@
             this.groupBox4.Controls.Add(this.tableLayoutPanel_Logs);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(3, 621);
+            this.groupBox4.Location = new System.Drawing.Point(3, 572);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(794, 166);
+            this.groupBox4.Size = new System.Drawing.Size(794, 215);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Log";
@@ -166,12 +160,12 @@
             this.tableLayoutPanel_Logs.RowCount = 1;
             this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 132F));
-            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 132F));
-            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 132F));
-            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 132F));
-            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 132F));
-            this.tableLayoutPanel_Logs.Size = new System.Drawing.Size(780, 120);
+            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel_Logs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel_Logs.Size = new System.Drawing.Size(780, 170);
             this.tableLayoutPanel_Logs.TabIndex = 0;
             // 
             // logs
@@ -181,7 +175,7 @@
             this.logs.Multiline = true;
             this.logs.Name = "logs";
             this.logs.ReadOnly = true;
-            this.logs.Size = new System.Drawing.Size(774, 114);
+            this.logs.Size = new System.Drawing.Size(774, 164);
             this.logs.TabIndex = 0;
             this.logs.TextChanged += new System.EventHandler(this.logs_TextChanged);
             // 
@@ -192,7 +186,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(794, 197);
+            this.groupBox1.Size = new System.Drawing.Size(794, 148);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Video";
@@ -210,15 +204,12 @@
             this.tableLayoutPanel_Video.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel_Video.Controls.Add(this.tableLayoutPanel_Video_Name, 1, 1);
             this.tableLayoutPanel_Video.Controls.Add(this.tableLayoutPanel_vtrack, 1, 0);
-            this.tableLayoutPanel_Video.Controls.Add(this.PAR, 0, 2);
-            this.tableLayoutPanel_Video.Controls.Add(this.tableLayoutPanel_PAR, 1, 2);
-            this.tableLayoutPanel_Video.Location = new System.Drawing.Point(7, 22);
+            this.tableLayoutPanel_Video.Location = new System.Drawing.Point(7, 25);
             this.tableLayoutPanel_Video.Name = "tableLayoutPanel_Video";
-            this.tableLayoutPanel_Video.RowCount = 3;
-            this.tableLayoutPanel_Video.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Video.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Video.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Video.Size = new System.Drawing.Size(780, 165);
+            this.tableLayoutPanel_Video.RowCount = 2;
+            this.tableLayoutPanel_Video.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Video.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Video.Size = new System.Drawing.Size(780, 110);
             this.tableLayoutPanel_Video.TabIndex = 0;
             // 
             // Clear_vtrack_name
@@ -346,66 +337,12 @@
             this.Videopath.DragDrop += new System.Windows.Forms.DragEventHandler(this.Videopath_DragDrop);
             this.Videopath.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxDragEnter);
             // 
-            // PAR
-            // 
-            this.PAR.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PAR.AutoSize = true;
-            this.PAR.Location = new System.Drawing.Point(3, 125);
-            this.PAR.Name = "PAR";
-            this.PAR.Size = new System.Drawing.Size(50, 24);
-            this.PAR.TabIndex = 5;
-            this.PAR.Text = "PAR";
-            // 
-            // tableLayoutPanel_PAR
-            // 
-            this.tableLayoutPanel_PAR.ColumnCount = 3;
-            this.tableLayoutPanel_PAR.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42F));
-            this.tableLayoutPanel_PAR.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel_PAR.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42F));
-            this.tableLayoutPanel_PAR.Controls.Add(this.divide, 1, 0);
-            this.tableLayoutPanel_PAR.Controls.Add(this.PAR_numerator, 0, 0);
-            this.tableLayoutPanel_PAR.Controls.Add(this.PAR_denominator, 2, 0);
-            this.tableLayoutPanel_PAR.Location = new System.Drawing.Point(159, 113);
-            this.tableLayoutPanel_PAR.Name = "tableLayoutPanel_PAR";
-            this.tableLayoutPanel_PAR.RowCount = 1;
-            this.tableLayoutPanel_PAR.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_PAR.Size = new System.Drawing.Size(188, 49);
-            this.tableLayoutPanel_PAR.TabIndex = 6;
-            // 
-            // divide
-            // 
-            this.divide.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.divide.AutoSize = true;
-            this.divide.Location = new System.Drawing.Point(85, 12);
-            this.divide.Name = "divide";
-            this.divide.Size = new System.Drawing.Size(16, 24);
-            this.divide.TabIndex = 0;
-            this.divide.Text = ":";
-            // 
-            // PAR_numerator
-            // 
-            this.PAR_numerator.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PAR_numerator.Location = new System.Drawing.Point(3, 8);
-            this.PAR_numerator.Name = "PAR_numerator";
-            this.PAR_numerator.Size = new System.Drawing.Size(72, 32);
-            this.PAR_numerator.TabIndex = 1;
-            this.PAR_numerator.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PAR_numerator_KeyPress);
-            // 
-            // PAR_denominator
-            // 
-            this.PAR_denominator.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PAR_denominator.Location = new System.Drawing.Point(111, 8);
-            this.PAR_denominator.Name = "PAR_denominator";
-            this.PAR_denominator.Size = new System.Drawing.Size(74, 32);
-            this.PAR_denominator.TabIndex = 2;
-            this.PAR_denominator.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PAR_denominator_KeyPress);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel_Audio);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(3, 206);
+            this.groupBox2.Location = new System.Drawing.Point(3, 157);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(794, 197);
             this.groupBox2.TabIndex = 2;
@@ -791,7 +728,7 @@
             this.groupBox3.Controls.Add(this.tableLayoutPanel_Chapter);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(3, 409);
+            this.groupBox3.Location = new System.Drawing.Point(3, 360);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(794, 100);
             this.groupBox3.TabIndex = 3;
@@ -869,7 +806,7 @@
             this.groupBox5.Controls.Add(this.tableLayoutPanel_output);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(3, 515);
+            this.groupBox5.Location = new System.Drawing.Point(3, 466);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(794, 100);
             this.groupBox5.TabIndex = 5;
@@ -953,12 +890,12 @@
             this.tableLayoutPanel_Bottom.Location = new System.Drawing.Point(7, 4);
             this.tableLayoutPanel_Bottom.Name = "tableLayoutPanel_Bottom";
             this.tableLayoutPanel_Bottom.RowCount = 6;
-            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.11852F));
-            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.1141F));
-            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.05953F));
-            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.05953F));
-            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.59874F));
-            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0496F));
+            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.58794F));
+            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.11558F));
+            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.0603F));
+            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.0603F));
+            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.12563F));
+            this.tableLayoutPanel_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.05025F));
             this.tableLayoutPanel_Bottom.Size = new System.Drawing.Size(800, 880);
             this.tableLayoutPanel_Bottom.TabIndex = 3;
             // 
@@ -993,7 +930,7 @@
             this.Version.Name = "Version";
             this.Version.Size = new System.Drawing.Size(70, 24);
             this.Version.TabIndex = 3;
-            this.Version.Text = "v1.4b";
+            this.Version.Text = "v1.3c";
             // 
             // Main
             // 
@@ -1019,8 +956,6 @@
             this.tableLayoutPanel_Video_Name.PerformLayout();
             this.tableLayoutPanel_vtrack.ResumeLayout(false);
             this.tableLayoutPanel_vtrack.PerformLayout();
-            this.tableLayoutPanel_PAR.ResumeLayout(false);
-            this.tableLayoutPanel_PAR.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel_Audio.ResumeLayout(false);
             this.tableLayoutPanel_Audio.PerformLayout();
@@ -1099,11 +1034,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_cpath;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_opath;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_AD;
-        private System.Windows.Forms.Label PAR;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_PAR;
-        private System.Windows.Forms.Label divide;
-        private System.Windows.Forms.TextBox PAR_numerator;
-        private System.Windows.Forms.TextBox PAR_denominator;
     }
 }
 

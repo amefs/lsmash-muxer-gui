@@ -384,7 +384,6 @@ namespace lsmash_gui
             bool vtrack_flag = false;
             bool atrack_flag = false;
             bool vfps_flag = false;
-            bool vhandler_flag = false;
             bool ifvmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
             bool ifamp4 = Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4";
             bool ifmp4 = ifvmp4 || ifamp4;
@@ -427,14 +426,6 @@ namespace lsmash_gui
                         arg_muxer = (arg_muxer + "?1:handler=" + vtrack_name.Text);
                     else
                         arg_muxer = (arg_muxer + "?handler=" + vtrack_name.Text);
-                    vhandler_flag = true;
-                }
-                if (vtrack_flag && PAR_denominator.Text != "" && PAR_numerator.Text !="" && !ifmp4)
-                {
-                    if (vfps_flag == true || vhandler_flag == true)
-                        arg_muxer = (arg_muxer + ",par=" + PAR_numerator.Text + ":" + PAR_denominator.Text);
-                    else
-                        arg_muxer = (arg_muxer + "?par=" + PAR_numerator.Text + ":" + PAR_denominator.Text);
                 }
                 if (Audiopath.Text != "")
                 {
@@ -563,40 +554,6 @@ namespace lsmash_gui
             Lang_Value.SelectedItem = null;
             ADelay_Value.Value = 0;
             logs.Text = "";
-        }
-
-        private void PAR_numerator_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 0x20) e.KeyChar = (char)0;
-            if ((e.KeyChar == 0x2D) && (((TextBox)sender).Text.Length == 0)) return;
-            if (e.KeyChar > 0x20)
-            {
-                try
-                {
-                    double.Parse(((TextBox)sender).Text + e.KeyChar.ToString());
-                }
-                catch
-                {
-                    e.KeyChar = (char)0;
-                }
-            }
-        }
-
-        private void PAR_denominator_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 0x20) e.KeyChar = (char)0;
-            if ((e.KeyChar == 0x2D) && (((TextBox)sender).Text.Length == 0)) return;
-            if (e.KeyChar > 0x20)
-            {
-                try
-                {
-                    double.Parse(((TextBox)sender).Text + e.KeyChar.ToString());
-                }
-                catch
-                {
-                    e.KeyChar = (char)0;
-                }
-            }
         }
     }
     public static class comm
