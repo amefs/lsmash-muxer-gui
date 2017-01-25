@@ -1,5 +1,13 @@
 L-smash muxer GUI Changelog
 ===========================
+v1.4beta (25.1.2017)
+-New:
+	1.增加视频轨PAR参数, PAR的概念详见PAR DAR SAR的关系;
+-Change:
+	1.当gui界面同文件夹中不存在mediainfo.dll时，也不会产生其他隐含的错误;
+-Info:
+	1.增加lsmash-works中的boxdumper cli;
+	2.替换timelineeditor.exe为r966版本, 以解决r1417封装timecode时发生奔溃的问题.
 
 v1.3b (12.1.2017)
 -New:

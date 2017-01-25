@@ -25,6 +25,8 @@ GUI的界面主要分为Video、Audio、Chapter、Output、Logs部分。分别�
 
 + **Name**, Video轨道的别名。
 
++ **PAR**, Video的PAR参数(pixel aspect ratio), PAR的参数可选, 留空则不改变。此功能在1.4beta版中加入。
+
 ###Audio
 
 + **Audio Input**, Audio文件输入。输入支持***aac, m4a, mp3, mp4***后缀, 不区分大小写。
