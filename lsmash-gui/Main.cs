@@ -74,62 +74,10 @@ namespace lsmash_gui
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Videopath.Text = openFileDialog1.FileName;
-                lsmash_gui.comm.vparameter = "";
-                bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
-                MediaInfo vfile = new MediaInfo();
-                vfile.Open(Videopath.Text);
-                int vtracksum = 0;
-                int atracksum = 0;
-                if (ifmp4)
+                bool mediainfo = false;
+                mediainfo = File.Exists(Application.StartupPath + "\\MediaInfo.dll");
+                if (mediainfo)
                 {
-                    if (vfile.Get(StreamKind.General, 0, "VideoCount") != "")
-                        vtracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "VideoCount"));
-                    if (vfile.Get(StreamKind.General, 0, "AudioCount") != "")
-                        atracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "AudioCount"));
-                    if (vtracksum > 1)
-                        for (int i = 1; i < vtracksum; i++)
-                        {
-                            lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Video, i, "ID") + ":remove");
-                        }
-                    if (atracksum > 0)
-                        for (int i = 0; i < atracksum; i++)
-                        {
-                            lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
-                        }
-                    if (vtracksum == 0)
-                    {
-                        Videopath.Text = "";
-                        MessageBox.Show("Not a Video File!");
-                    }
-                }
-                if (vtracksum != 0 || !ifmp4)
-                {
-                    string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
-                    if (FPS == "/")
-                        FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
-                    FPS_Value.SelectedItem = FPS;
-                }
-                vfile.Close();
-                outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
-            }
-        }
-        private static readonly HashSet<string> AcceptableVideoExtension = new HashSet<string> { ".avc", ".h264", ".264", ".hevc", ".265", ".mp4" };
-
-        private void Videopath_DragDrop(object sender, DragEventArgs e)
-        {
-            //drag video file and confirm format
-            string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
-            //confirm if path is a directort
-            string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-            if (System.IO.Directory.Exists(path))
-            {
-                MessageBox.Show("Not a File!");
-            }
-            else
-            {
-                if (AcceptableVideoExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
-                {
-                    Videopath.Text = fileName;
                     lsmash_gui.comm.vparameter = "";
                     bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
                     MediaInfo vfile = new MediaInfo();
@@ -165,7 +113,69 @@ namespace lsmash_gui
                             FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
                         FPS_Value.SelectedItem = FPS;
                     }
+                    vfile.Close();
+                }
+                outputpath.Text = GetOutputFileName(openFileDialog1.FileName);
+            }
+        }
+        private static readonly HashSet<string> AcceptableVideoExtension = new HashSet<string> { ".avc", ".h264", ".264", ".hevc", ".265", ".mp4" };
+
+        private void Videopath_DragDrop(object sender, DragEventArgs e)
+        {
+            //drag video file and confirm format
+            string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+            //confirm if path is a directort
+            string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+            if (System.IO.Directory.Exists(path))
+            {
+                MessageBox.Show("Not a File!");
+            }
+            else
+            {
+                if (AcceptableVideoExtension.Contains(Path.GetExtension(fileName)?.ToLower()))
+                {
+                    Videopath.Text = fileName;
+                    bool mediainfo = false;
+                    mediainfo = File.Exists(Application.StartupPath + "\\MediaInfo.dll");
+                    if (mediainfo)
+                    {
+                        lsmash_gui.comm.vparameter = "";
+                        bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
+                        MediaInfo vfile = new MediaInfo();
+                        vfile.Open(Videopath.Text);
+                        int vtracksum = 0;
+                        int atracksum = 0;
+                        if (ifmp4)
+                        {
+                            if (vfile.Get(StreamKind.General, 0, "VideoCount") != "")
+                                vtracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "VideoCount"));
+                            if (vfile.Get(StreamKind.General, 0, "AudioCount") != "")
+                                atracksum = (int)Convert.ToSingle(vfile.Get(StreamKind.General, 0, "AudioCount"));
+                            if (vtracksum > 1)
+                                for (int i = 1; i < vtracksum; i++)
+                                {
+                                    lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Video, i, "ID") + ":remove");
+                                }
+                            if (atracksum > 0)
+                                for (int i = 0; i < atracksum; i++)
+                                {
+                                    lsmash_gui.comm.vparameter += ("?" + vfile.Get(StreamKind.Audio, i, "ID") + ":remove");
+                                }
+                            if (vtracksum == 0)
+                            {
+                                Videopath.Text = "";
+                                MessageBox.Show("Not a Video File!");
+                            }
+                        }
+                        if (vtracksum != 0 || !ifmp4)
+                        {
+                            string FPS = vfile.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + vfile.Get(StreamKind.Video, 0, "FrameRate_Den");
+                            if (FPS == "/")
+                                FPS = (((int)Convert.ToSingle(vfile.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
+                            FPS_Value.SelectedItem = FPS;
+                        }
                         vfile.Close();
+                    }
                     outputpath.Text = GetOutputFileName(fileName);
                 }
                 else
