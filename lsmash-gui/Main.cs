@@ -460,13 +460,6 @@ namespace lsmash_gui
                     else
                         arg_muxer = (arg_muxer + "?1:language=" + Lang_Value.SelectedItem);
                 }
-                else if (atrack_flag)
-                {
-                    if (ifamp4)
-                        arg_muxer = (arg_muxer + "?" + lsmash_gui.comm.atrackID + ":language=jpn");
-                    else
-                        arg_muxer = (arg_muxer + "?1:language=jpn");
-                }
                 if (atrack_flag && atrack_name.Text != "")
                 {
                     arg_muxer = (arg_muxer + ",handler=" + atrack_name.Text);
@@ -515,6 +508,7 @@ namespace lsmash_gui
                 Excutable = "remuxer";
             else
                 Excutable = "muxer";
+            logs.Text += ("\r\n\"" + Application.StartupPath + "\\" + Excutable + "\"" + cmd);
             try
             {
                 Process p = new Process
@@ -541,7 +535,7 @@ namespace lsmash_gui
 
             catch (Exception ex)
             {
-                MessageBox.Show("执行命令失败，请检查输入的命令是否正确！");
+                MessageBox.Show("Mission failed Please Check the Command！");
             }
         }
         private void sortProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
