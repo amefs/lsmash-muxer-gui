@@ -393,7 +393,7 @@ namespace lsmash_gui
             bool vhandler_flag = false;
             bool ifvmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
             bool ifamp4 = Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4";
-            bool ifmp4 = ifvmp4 || ifamp4;
+            bool ifmp4 = ifvmp4 && ifamp4;
             string arg_muxer = "";
             if (outputpath.Text == "")
             {
@@ -489,6 +489,7 @@ namespace lsmash_gui
                         ExcuteDosCommand(arg_muxer);
                         Start.Enabled = true;
                         logs.Text = ("Finished.");
+                        //logs.Text += ("\n\r" + arg_muxer);
                     }
                 }
                 else
@@ -509,7 +510,7 @@ namespace lsmash_gui
 
         private void ExcuteDosCommand(string cmd)
         {
-            bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4";
+            bool ifmp4 = Path.GetExtension(Videopath.Text)?.ToLower() == ".mp4" && Path.GetExtension(Audiopath.Text)?.ToLower() == ".mp4";
             string Excutable = "";
             if (ifmp4)
                 Excutable = "remuxer";
