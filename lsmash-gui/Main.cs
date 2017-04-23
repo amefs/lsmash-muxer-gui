@@ -489,7 +489,7 @@ namespace lsmash_gui
                         ExcuteDosCommand(arg_muxer);
                         Start.Enabled = true;
                         logs.Text = ("Finished.");
-                        logs.Text += ("\n\r" + arg_muxer);
+                        //logs.Text += ("\n\r" + arg_muxer);
                     }
                 }
                 else
