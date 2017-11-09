@@ -3,7 +3,7 @@ L-SMASH Muxer GUI
 
 L-SMASH Muxer GUI是一个为L-SMASH Muxer/Remuxer封装工具适配的图形化操作界面, 现在支持视频、音频、章节文件的封装, 同时可以设定视频轨的帧率, 音频轨的语言等参数。
 
-##目录
+## 目录
 * [简介](#界面简介)
 	* [Video设定](#video)
 	* [Audio设定](#audio)
@@ -13,11 +13,11 @@ L-SMASH Muxer GUI是一个为L-SMASH Muxer/Remuxer封装工具适配的图形化
 * [FAQ](#faq)
 * [Tips](#tips)
 	
-##界面简介
+## 界面简介
 
 GUI的界面主要分为Video、Audio、Chapter、Output、Logs部分。分别提供视频、音频、章节文件的输入, 输出文件目录选择以及状态显示。视频、音频以及章节文件目录既可以点击`...`选择, 也可以使用拖拽功能。
 
-###Video
+### Video
 
 + **Video Input**, Video文件输入。输入支持***264, h264, avc, 265, hevc, mp4***后缀, 不区分大小写。
 
@@ -27,7 +27,7 @@ GUI的界面主要分为Video、Audio、Chapter、Output、Logs部分。分别�
 
 + **PAR**, Video的PAR参数(pixel aspect ratio), PAR的参数可选, 留空则不改变。此功能在1.4beta版中加入。
 
-###Audio
+### Audio
 
 + **Audio Input**, Audio文件输入。输入支持***aac, m4a, mp3, mp4***后缀, 不区分大小写。
 
@@ -37,7 +37,7 @@ GUI的界面主要分为Video、Audio、Chapter、Output、Logs部分。分别�
 
 + **Delay**, 音频轨道的延迟长度。单位为ms
 
-###Chapter
+### Chapter
 
 + **Chapters File**, 章节文件, 默认***txt***后缀输入, 章节文件示例如下：
 
@@ -59,15 +59,15 @@ CHAPTER07NAME=Chapter 07
 
 ```
 
-###Output
+### Output
 
 + **Muxed Output**, 选择输出位置。当视频轨被正确指定时, 此处output会默认在同文件夹中生成`[视屏轨文件名]_Muxed.mp4`否则需要手动指定。若不指定输出文件位置则无法继续混流。
 
-###Logs
+### Logs
 
 + 现在仅有`Processing...`和`Finished`两种状态显示。[Todo:]muxer信息回传
 
-##FAQ
+## FAQ
 
 +	Q:GUI可以提供哪几种混流方案？
 
@@ -85,7 +85,7 @@ CHAPTER07NAME=Chapter 07
 
 	A:由于软件最早设计是参照VCB-S常用规格, 因此只添加了一些比较常用的混流格式, 更多的格式支持请直接使用命令行。
 
-##Tips
+## Tips
 
 + 1.由于所有的文件识别都基于文件后缀, 请不要故意使用错误的文件名混淆GUI, 这将可能引起软件崩溃。
 
@@ -95,7 +95,7 @@ CHAPTER07NAME=Chapter 07
 
 + 4.由于GUI尚在开发, 仍可能存在大量bug, 请耐心对待。
 
-===========================
+---
 
 最后欢迎各位dalao继续帮助我改进此GUI。
 
