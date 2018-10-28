@@ -1,11 +1,13 @@
 L-SMASH Muxer GUI 2
 ===========================
 
+[README](https://github.com/amefs/lsmash-muxer-gui/blob/v2.0/README.md)
+
 L-SMASH Muxer GUI 2 是一个为L-SMASH Muxer/Remuxer封装工具适配的图形化操作界面, 现在支持视频、音频、章节文件的封装, 同时可以设定视频轨的帧率, 音频轨的语言等参数。
 
 ## 目录
-- [目录](#目录)
-- [界面简介](#界面简介)
+- [目录](#%E7%9B%AE%E5%BD%95)
+- [界面简介](#%E7%95%8C%E9%9D%A2%E7%AE%80%E4%BB%8B)
 	- [Video](#video)
 	- [Audio](#audio)
 	- [Chapter](#chapter)

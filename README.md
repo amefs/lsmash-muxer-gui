@@ -1,6 +1,8 @@
 L-SMASH Muxer GUI 2
 ===========================
 
+[中文文档](https://github.com/amefs/lsmash-muxer-gui/blob/v2.0/README_zh.md)
+
 L-SMASH Muxer GUI 2 is a graphic interface for L-SMASH Muxer/Remuxer, It can support muxing/remuxing of video, audio and chapter.
 
 ## Table of Contents
