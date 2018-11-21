@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
+using MediaInfoLib;
 
 namespace lsmash_gui_2
 {
@@ -372,7 +373,7 @@ namespace lsmash_gui_2
                     }
                     else
                     {
-                        // Track Remux
+                        // MP4 Video Track Remux
                         argMuxer = " -i \"" + model.VideoPath + "\"";
                         // chapter
                         if (!string.IsNullOrEmpty(model.ChapterPath))
@@ -396,14 +397,48 @@ namespace lsmash_gui_2
                     fileName = Path.GetFileNameWithoutExtension(model.OutputPath);
                     string timecodeTmp = Path.Combine(directory, "_tcTmp_" + fileName + ".mp4");
                     System.IO.Directory.Move(model.OutputPath, timecodeTmp);
-
-                    string timecodeArgs = " --track 1 --timecode \"" + model.TimecodePath +
-                        "\" \"" + timecodeTmp + "\" \"" + model.OutputPath + "\"";
-
-                    LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Editing Timecode...");
-                    ExcuteDosCommand("\"" + AppDomain.CurrentDomain.BaseDirectory + "timelineeditor.exe\"" + timecodeArgs);
-                    LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Timecode editing finished.");
-                    System.IO.File.Delete(@timecodeTmp);
+                    // check chapter
+                    MediaInfo mi = new MediaInfo();
+                    mi.Open(timecodeTmp);
+                    bool existChapter = mi.Get(StreamKind.General, 0, "MenuCount") != "";
+                    mi.Close();
+                    if (existChapter)
+                    {
+                        string timecodeTmpAdd = Path.Combine(directory, "_noChTmp_" + fileName + ".mp4");
+                        string chapterTmp = Path.Combine(directory, "_TmpChapter_" + fileName + ".txt");
+                        // extract chapter
+                        string boxdumperArgs = " --chapter \"" + timecodeTmp + "\" > \"" + chapterTmp + "\"";
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "extract Chapter...");
+                        ExcuteDosCommand("\"" + AppDomain.CurrentDomain.BaseDirectory + "boxdumper.exe\"" + boxdumperArgs);
+                        string timecodeArgs = " --track 1 --timecode \"" + model.TimecodePath +
+                                "\" \"" + timecodeTmp + "\" \"" + timecodeTmpAdd + "\"";
+                        // excute timelineeditor
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Editing Timecode...");
+                        ExcuteDosCommand("\"" + AppDomain.CurrentDomain.BaseDirectory + "timelineeditor.exe\"" + timecodeArgs);
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Adding Chapter...");
+                        // remux chapter
+                        argMuxer = " -i \"" + timecodeTmpAdd + "\"";
+                        argMuxer += " --chapter \"" + chapterTmp + "\"";
+                        argMuxer += " --chapter-track 10";
+                        argMuxer += " -o \"" + model.OutputPath + "\"";
+                        Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "remuxer.exe" + "\"";
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video....");
+                        ExcuteDosCommand(Excutable + argMuxer);
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Timecode editing finished.");
+                        System.IO.File.Delete(@chapterTmp);
+                        System.IO.File.Delete(@timecodeTmpAdd);
+                        System.IO.File.Delete(@timecodeTmp);
+                    }
+                    else
+                    {
+                        string timecodeArgs = " --track 1 --timecode \"" + model.TimecodePath +
+                                "\" \"" + timecodeTmp + "\" \"" + model.OutputPath + "\"";
+                        // excute command
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Editing Timecode...");
+                        ExcuteDosCommand("\"" + AppDomain.CurrentDomain.BaseDirectory + "timelineeditor.exe\"" + timecodeArgs);
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Timecode editing finished.");
+                        System.IO.File.Delete(@timecodeTmp);
+                    }
                 }
             }
 
