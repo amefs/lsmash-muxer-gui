@@ -6,16 +6,18 @@ L-SMASH Muxer GUI 2
 L-SMASH Muxer GUI 2 is a graphic interface for L-SMASH Muxer/Remuxer, It can support muxing/remuxing of video, audio and chapter.
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
-- [Introduction of GUI](#introduction-of-gui)
+- [L-SMASH Muxer GUI 2](#l-smash-muxer-gui-2)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction of GUI](#introduction-of-gui)
     - [Video](#video)
     - [Audio](#audio)
     - [Chapter](#chapter)
     - [timecode](#timecode)
     - [Output](#output)
     - [Logs](#logs)
-- [FAQ](#faq)
-- [Tips](#tips)
+    - [Status](#status)
+  - [FAQ](#faq)
+  - [Tips](#tips)
 
 ## Introduction of GUI
 
@@ -23,7 +25,7 @@ This Gui contents Video, Audio, Chapter, timecode, Output, Logs. You can input v
 
 ### Video
 
-+ **Video Input**, video file. Support ***264, h264, avc, 265, hevc, mp4***, Case insensitive.
++ **Video Input**, video file. Support ***264, h264, avc, 265, hevc, mp4, vc1***, Case insensitive.
 
 + **FPS**, the Framerate of video(CRF), add autodetect function since v1.2. If auto detection is incorrect, it can be specified in the drop-down menu.
 
@@ -33,7 +35,7 @@ This Gui contents Video, Audio, Chapter, timecode, Output, Logs. You can input v
 
 ### Audio
 
-+ **Audio Input**, audio file. Support ***aac, m4a, mp3, mp4*** Case insensitive.
++ **Audio Input**, audio file. Support ***aac, amr, ac3, eac3, dts m4a, mp3, mp4*** Case insensitive.
 
 + **Language**, Language code of audio track, the Language code can be select from drop-down menu.
 
@@ -72,7 +74,11 @@ CHAPTER07NAME=Chapter 07
 
 ### Logs
 
-+ only `Processing...` and `Finished`.
++ Redirect messages of l-smash cli.
+
+### Status
+
++ Processbar add in version v2.1a
 
 ## FAQ
 

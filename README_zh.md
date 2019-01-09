@@ -6,16 +6,18 @@ L-SMASH Muxer GUI 2
 L-SMASH Muxer GUI 2 是一个为L-SMASH Muxer/Remuxer封装工具适配的图形化操作界面, 现在支持视频、音频、章节文件的封装, 同时可以设定视频轨的帧率, 音频轨的语言等参数。
 
 ## 目录
-- [目录](#%E7%9B%AE%E5%BD%95)
-- [界面简介](#%E7%95%8C%E9%9D%A2%E7%AE%80%E4%BB%8B)
-	- [Video](#video)
-	- [Audio](#audio)
-	- [Chapter](#chapter)
-	- [timecode](#timecode)
-	- [Output](#output)
-	- [Logs](#logs)
-- [FAQ](#faq)
-- [Tips](#tips)
+- [L-SMASH Muxer GUI 2](#l-smash-muxer-gui-2)
+	- [目录](#%E7%9B%AE%E5%BD%95)
+	- [界面简介](#%E7%95%8C%E9%9D%A2%E7%AE%80%E4%BB%8B)
+		- [Video](#video)
+		- [Audio](#audio)
+		- [Chapter](#chapter)
+		- [timecode](#timecode)
+		- [Output](#output)
+		- [Logs](#logs)
+		- [Status](#status)
+	- [FAQ](#faq)
+	- [Tips](#tips)
 	
 ## 界面简介
 
@@ -23,7 +25,7 @@ GUI的界面主要分为Video、Audio、Chapter、timecode、Output、Logs部分
 
 ### Video
 
-+ **Video Input**, Video文件输入。输入支持 ***264, h264, avc, 265, hevc, mp4*** 后缀, 不区分大小写。
++ **Video Input**, Video文件输入。输入支持 ***264, h264, avc, 265, hevc, mp4, vc1*** 后缀, 不区分大小写。
 
 + **FPS**, Video的帧率设定(CRF)。在1.2版本中加入了自动帧率识别。如果无法正常显示帧率, 或者需要手动指定, 那么可以在下拉菜单中指定。
 
@@ -33,13 +35,13 @@ GUI的界面主要分为Video、Audio、Chapter、timecode、Output、Logs部分
 
 ### Audio
 
-+ **Audio Input**, Audio文件输入。输入支持 ***aac, m4a, mp3, mp4*** 后缀, 不区分大小写。
++ **Audio Input**, Audio文件输入。输入支持 ***aac, amr, ac3, eac3, dts m4a, mp3, mp4*** 后缀, 不区分大小写。
 
 + **Language**, Audio语言。可以在下拉菜单中选择。
 
 + **Name**, Audio轨道别名。
 
-+ **Delay**, 音频轨道的延迟长度。单位为ms
++ **Delay**, 音频轨道的延迟长度。单位为ms。
 
 ### Chapter
 
@@ -64,7 +66,7 @@ CHAPTER07NAME=Chapter 07
 ```
 ### timecode
 
-+ **timecode File**, 时间码文件，默认 ***txt*** 后缀输入，可以依据此文件制作vfr视频
++ **timecode File**, 时间码文件，默认 ***txt*** 后缀输入，可以依据此文件制作vfr视频。
 
 ### Output
 
@@ -72,7 +74,11 @@ CHAPTER07NAME=Chapter 07
 
 ### Logs
 
-+ 现在仅有 `Processing...` 和 `Finished` 两种状态显示。
++ 转发 l-smash cli 显示的信息。
+
+### Status
+
++ 从 v2.1a 开始加入进度条。
 
 ## FAQ
 

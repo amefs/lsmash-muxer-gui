@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lsmash_gui_2"
         mc:Ignorable="d"
-        Title="L-SMASH GUI 2" Height="575" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="L-SMASH GUI 2" Height="600" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
@@ -19,7 +19,8 @@
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -200,7 +201,14 @@
             <TextBlock Name="LogBox" Margin="2" TextWrapping="Wrap"/>
         </GroupBox>
 
-        <Grid Grid.Row="6" Margin="2">
+        <GroupBox Grid.Row="6" Header="Status">
+            <Grid Margin="0">
+                <ProgressBar x:Name="ProcessBar" Height="18" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="442"/>
+                <TextBlock Text="{Binding ElementName=ProcessBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </GroupBox>
+
+        <Grid Grid.Row="7" Margin="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -219,7 +227,7 @@
             <Button Name="ClearBtn" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3" Margin="0" Height="23" Width="75" Click="ClearBtn_Click">Clear</Button>
             <Button Name="StartBtn" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Grid.Column="4" Margin="0" Height="23" Width="75" Click="StartBtn_Click">Start</Button>
 
-            <Label Grid.Row="1" Grid.Column="0" Margin="0">v2.0b</Label>
+            <Label Grid.Row="1" Grid.Column="0" Margin="0">v2.1a</Label>
         </Grid>
     </Grid>
 </Window>

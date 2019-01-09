@@ -197,6 +197,8 @@ namespace lsmash_gui_2
             public string vTrackID;
             public string aParameter;
             public string aTrackID;
+            public ulong vSize;
+            public ulong aSize;
         }
 
         public param comm;
@@ -221,6 +223,10 @@ namespace lsmash_gui_2
                 if (mi.Get(StreamKind.General, 0, "AudioCount") != "")
                     aTrackSum = (int)Convert.ToSingle(mi.Get(StreamKind.General, 0, "AudioCount"));
                 this.comm.aTrackID = mi.Get(StreamKind.Audio, 0, "ID");
+                if (mi.Get(StreamKind.Audio, 0, "StreamSize") != "")
+                    this.comm.aSize = (ulong)Convert.ToSingle(mi.Get(StreamKind.Audio, 0, "StreamSize"));
+                else
+                    this.comm.aSize = (ulong)Convert.ToSingle(mi.Get(StreamKind.General, 0, "FileSize"));
                 if (aTrackSum > 1)
                 {
                     for (int i = 1; i < aTrackSum; i++)
@@ -264,6 +270,10 @@ namespace lsmash_gui_2
                     vTrackSum = (int)Convert.ToSingle(mi.Get(StreamKind.General, 0, "VideoCount"));
                 if (mi.Get(StreamKind.General, 0, "AudioCount") != "")
                     aTrackSum = (int)Convert.ToSingle(mi.Get(StreamKind.General, 0, "AudioCount"));
+                if (mi.Get(StreamKind.Video, 0, "StreamSize") != "")
+                    this.comm.vSize = (ulong)Convert.ToSingle(mi.Get(StreamKind.Video, 0, "StreamSize"));
+                else
+                    this.comm.vSize = (ulong)Convert.ToSingle(mi.Get(StreamKind.General, 0, "FileSize"));
                 if (vTrackSum > 1)
                     for (int i = 1; i < vTrackSum; i++)
                     {

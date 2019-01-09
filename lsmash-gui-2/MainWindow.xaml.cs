@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Threading;
 using MediaInfoLib;
 
 namespace lsmash_gui_2
@@ -19,8 +20,8 @@ namespace lsmash_gui_2
     {
         private LsmashViewModel model;
 
-        private static readonly HashSet<string> AcceptableVideoExtension = new HashSet<string> { ".avc", ".h264", ".264", ".hevc", ".265", ".mp4" };
-        private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".m4a", ".mp3", ".mp4" };
+        private static readonly HashSet<string> AcceptableVideoExtension = new HashSet<string> { ".avc", ".h264", ".264", ".hevc", ".265", ".mp4", ".vc1" };
+        private static readonly HashSet<string> AcceptableAudioExtension = new HashSet<string> { ".aac", ".ac3", ".amr", ".dts", ".eac3", ".m4a", ".mp3", ".mp4" };
 
         public MainWindow()
         {
@@ -162,6 +163,11 @@ namespace lsmash_gui_2
                             // excute command
                             argMuxer += " -o \"" + model.OutputPath + "\"";
                             Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "muxer.exe" + "\"";
+                            this.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                this.ProcessBar.Value = 0;
+                                this.ProcessBar.IsIndeterminate = true;
+                            }));
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing RAW video with RAW audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing finished.");
@@ -198,6 +204,11 @@ namespace lsmash_gui_2
                             // excute command
                             argMuxer += " -o \"" + vTrackMP4Path + "\"";
                             Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "muxer.exe" + "\"";
+                            this.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                this.ProcessBar.Value = 0;
+                                this.ProcessBar.IsIndeterminate = true;
+                            }));
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing RAW video....");
                             ExcuteDosCommand(Excutable + argMuxer);
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing finished.");
@@ -231,6 +242,11 @@ namespace lsmash_gui_2
                             // excute command
                             argMuxer += " -o \"" + model.OutputPath + "\"";
                             Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "remuxer.exe" + "\"";
+                            this.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                this.ProcessBar.Value = 0;
+                                this.ProcessBar.IsIndeterminate = true;
+                            }));
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video and audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
@@ -270,6 +286,11 @@ namespace lsmash_gui_2
                         if (!string.IsNullOrEmpty(model.ChapterPath)) argMuxer += " --chapter \"" + model.ChapterPath + "\"";
                         // excute command
                         argMuxer += " -o \"" + model.OutputPath + "\"";
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.Value = 0;
+                            this.ProcessBar.IsIndeterminate = true;
+                        }));
                         Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "muxer.exe" + "\"";
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing RAW video....");
                         ExcuteDosCommand(Excutable + argMuxer);
@@ -310,6 +331,11 @@ namespace lsmash_gui_2
                             // excute command
                             argMuxer += " -o \"" + aTrackMP4Path + "\"";
                             Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "muxer.exe" + "\"";
+                            this.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                this.ProcessBar.Value = 0;
+                                this.ProcessBar.IsIndeterminate = true;
+                            }));
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing RAW aideo....");
                             ExcuteDosCommand(Excutable + argMuxer);
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing finished.");
@@ -331,6 +357,11 @@ namespace lsmash_gui_2
                             // excute command
                             argMuxer += " -o \"" + model.OutputPath + "\"";
                             Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "remuxer.exe" + "\"";
+                            this.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                this.ProcessBar.Value = 0;
+                                this.ProcessBar.IsIndeterminate = true;
+                            }));
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video and audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
@@ -366,6 +397,11 @@ namespace lsmash_gui_2
                             // excute command
                             argMuxer += " -o \"" + model.OutputPath + "\"";
                             Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "remuxer.exe" + "\"";
+                            this.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                this.ProcessBar.Value = 0;
+                                this.ProcessBar.IsIndeterminate = true;
+                            }));
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video and audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
@@ -384,6 +420,11 @@ namespace lsmash_gui_2
                         // excute command
                         argMuxer += " -o \"" + model.OutputPath + "\"";
                         Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "remuxer.exe" + "\"";
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.Value = 0;
+                            this.ProcessBar.IsIndeterminate = true;
+                        }));
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video....");
                         ExcuteDosCommand(Excutable + argMuxer);
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
@@ -408,13 +449,28 @@ namespace lsmash_gui_2
                         string chapterTmp = Path.Combine(directory, "_TmpChapter_" + fileName + ".txt");
                         // extract chapter
                         string boxdumperArgs = " --chapter \"" + timecodeTmp + "\" > \"" + chapterTmp + "\"";
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.Value = 0;
+                            this.ProcessBar.IsIndeterminate = true;
+                        }), DispatcherPriority.Background);
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "extract Chapter...");
                         ExcuteDosCommand("\"" + AppDomain.CurrentDomain.BaseDirectory + "boxdumper.exe\"" + boxdumperArgs);
                         string timecodeArgs = " --track 1 --timecode \"" + model.TimecodePath +
                                 "\" \"" + timecodeTmp + "\" \"" + timecodeTmpAdd + "\"";
                         // excute timelineeditor
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.Value = 0;
+                            this.ProcessBar.IsIndeterminate = true;
+                        }), DispatcherPriority.Background);
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Editing Timecode...");
                         ExcuteDosCommand("\"" + AppDomain.CurrentDomain.BaseDirectory + "timelineeditor.exe\"" + timecodeArgs);
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.Value = 0;
+                            this.ProcessBar.IsIndeterminate = true;
+                        }));
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Adding Chapter...");
                         // remux chapter
                         argMuxer = " -i \"" + timecodeTmpAdd + "\"";
@@ -422,6 +478,11 @@ namespace lsmash_gui_2
                         argMuxer += " --chapter-track 10";
                         argMuxer += " -o \"" + model.OutputPath + "\"";
                         Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "remuxer.exe" + "\"";
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.Value = 0;
+                            this.ProcessBar.IsIndeterminate = true;
+                        }), DispatcherPriority.Background);
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video....");
                         ExcuteDosCommand(Excutable + argMuxer);
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Timecode editing finished.");
@@ -434,6 +495,11 @@ namespace lsmash_gui_2
                         string timecodeArgs = " --track 1 --timecode \"" + model.TimecodePath +
                                 "\" \"" + timecodeTmp + "\" \"" + model.OutputPath + "\"";
                         // excute command
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.Value = 0;
+                            this.ProcessBar.IsIndeterminate = true;
+                        }));
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Editing Timecode...");
                         ExcuteDosCommand("\"" + AppDomain.CurrentDomain.BaseDirectory + "timelineeditor.exe\"" + timecodeArgs);
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Timecode editing finished.");
@@ -479,9 +545,30 @@ namespace lsmash_gui_2
         private void pOutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             Action<TextBlock, string> logAct = new Action<TextBlock, string>(UpdateLog);
+            string outputMsg = "";
+            string processedByte = @"Importing:\s*([\d\.]+)\s*(bytes)*";
+            double totalSize = model.comm.aSize + model.comm.vSize;
+            double pBarValue = 0;
             if (!string.IsNullOrEmpty(e.Data))
             {
-                LogBox.Dispatcher.BeginInvoke(logAct, LogBox, e.Data);
+                outputMsg = e.Data;
+                foreach (Match match in Regex.Matches(outputMsg, processedByte))
+                {
+                    if (!string.IsNullOrEmpty(match.Value))
+                    {
+                        pBarValue = Math.Min(Math.Ceiling((double)Convert.ToSingle(match.Groups[1].Value) / totalSize * 100), 100.00);
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.ProcessBar.IsIndeterminate = false;
+                            this.ProcessBar.Value = pBarValue;
+                        }), DispatcherPriority.Background);
+                    }
+                    //LogBox.Dispatcher.BeginInvoke(logAct, LogBox, match.Groups[1].Value);
+                }
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.LogBox.Text = outputMsg;
+                }), DispatcherPriority.Send);
             }
         }
 
@@ -490,6 +577,10 @@ namespace lsmash_gui_2
             Action<TextBlock, string> logAct = new Action<TextBlock, string>(UpdateLog);
             model = new LsmashViewModel();
             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "");
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.ProcessBar.Value = 0;
+            }));
             DataContext = model;
         }
 
@@ -497,7 +588,7 @@ namespace lsmash_gui_2
         {
             using (var ofd = new OpenFileDialog
             {
-                Filter = "All Support Video Files|*.264;*.h264;*.avc;*.265;*.hevc;*.mp4|RAW MPEG-4 AVC|*.264;*.h264;*.avc|RAW MPEG-4 HEVC|*.265;*.hevc|MP4 File|*.mp4|All Files|*.*",
+                Filter = "All Support Video Files|*.264;*.h264;*.avc;*.265;*.hevc;*.mp4;*.vc1|RAW MPEG-4 AVC|*.264;*.h264;*.avc|RAW MPEG-4 HEVC|*.265;*.hevc|RAW VC-1|*.vc1|MP4 File|*.mp4|All Files|*.*",
                 RestoreDirectory = true,
                 FilterIndex = 1
             })
@@ -523,7 +614,7 @@ namespace lsmash_gui_2
         {
             using (var ofd = new OpenFileDialog
             {
-                Filter = "All Support Audio Files|*.aac;*.m4a;*.mp3;*.mp4|AAC|*.aac;*.m4a|MP3|*.mp3|MP4 File|*.mp4|All Files|*.*",
+                Filter = "All Support Audio Files|*.aac;*.ac3;*.amr;*.dts;*.eac3;*.m4a;*.mp3;*.mp4|AAC|*.aac;*.m4a|AC3|*.ac3;*.eac3|AMR|*.amr|DTS|*.dts|MP3|*.mp3|MP4 File|*.mp4|All Files|*.*",
                 RestoreDirectory = true,
                 FilterIndex = 1
             })
