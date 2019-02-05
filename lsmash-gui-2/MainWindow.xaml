@@ -101,7 +101,7 @@
                 </Grid>
                 <Button Name="ClearANameBtn" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Height="22" Width="23" Click="ClearANameBtn_Click">&#x2573;</Button>
 
-                <Label Grid.Row="2" Grid.Column="0">Delay (ms)</Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="Delay"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                     <Grid Margin="2" MaxWidth="145" Width="145">
                         <Grid.ColumnDefinitions>

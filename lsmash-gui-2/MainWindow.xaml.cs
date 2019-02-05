@@ -62,7 +62,7 @@ namespace lsmash_gui_2
             bool vFPSFlag = false;
             bool vHandlerFlag = false;
             bool aHandlerFlag = false;
-            bool aDelayFlag = false;
+            bool aLangFlag = false;
             bool vTrackMP4 = false;
             bool aTrackMP4 = Path.GetExtension(model.AudioPath)?.ToLower() == ".mp4";
             string argMuxer = "";
@@ -148,16 +148,16 @@ namespace lsmash_gui_2
                                 if (aHandlerFlag)
                                 {
                                     argMuxer += ",language=" + model.LanguageCode;
-                                    aDelayFlag = true;
+                                    aLangFlag = true;
                                 }
                                 else
                                 {
                                     argMuxer += "?language=" + model.LanguageCode;
-                                    aDelayFlag = true;
+                                    aLangFlag = true;
                                 }
-                            if (model.AudioDelay != 0)
-                                if (aHandlerFlag || aDelayFlag) argMuxer += ",encoder-delay=" + model.AudioDelay.ToString();
-                                else argMuxer += "?encoder-delay=" + model.AudioDelay.ToString();
+                            if (!string.IsNullOrEmpty(model.AudioDelayStr))
+                                if (aHandlerFlag || aLangFlag) argMuxer += ",encoder-delay=" + model.AudioDelayStr.ToString();
+                                else argMuxer += "?encoder-delay=" + model.AudioDelayStr.ToString();
                             // chapter
                             if (!string.IsNullOrEmpty(model.ChapterPath)) argMuxer += " --chapter \"" + model.ChapterPath + "\"";
                             // excute command
@@ -226,12 +226,10 @@ namespace lsmash_gui_2
                                 if (aHandlerFlag)
                                 {
                                     argMuxer += ",language=" + model.LanguageCode;
-                                    aDelayFlag = true;
                                 }
                                 else
                                 {
                                     argMuxer += "?" + model.comm.aTrackID + ":language=" + model.LanguageCode;
-                                    aDelayFlag = true;
                                 }
                             // chapter
                             if (!string.IsNullOrEmpty(model.ChapterPath))
@@ -318,16 +316,16 @@ namespace lsmash_gui_2
                                 if (aHandlerFlag)
                                 {
                                     argMuxer += ",language=" + model.LanguageCode;
-                                    aDelayFlag = true;
+                                    aLangFlag = true;
                                 }
                                 else
                                 {
                                     argMuxer += "?language=" + model.LanguageCode;
-                                    aDelayFlag = true;
+                                    aLangFlag = true;
                                 }
-                            if (model.AudioDelay != 0)
-                                if (aHandlerFlag || aDelayFlag) argMuxer += ",encoder-delay=" + model.AudioDelay.ToString();
-                                else argMuxer += "?encoder-delay=" + model.AudioDelay.ToString();
+                            if (!string.IsNullOrEmpty(model.AudioDelayStr))
+                                if (aHandlerFlag || aLangFlag) argMuxer += ",encoder-delay=" + model.AudioDelayStr.ToString();
+                                else argMuxer += "?encoder-delay=" + model.AudioDelayStr.ToString();
                             // excute command
                             argMuxer += " -o \"" + aTrackMP4Path + "\"";
                             Excutable = "\"" + AppDomain.CurrentDomain.BaseDirectory + "muxer.exe" + "\"";
