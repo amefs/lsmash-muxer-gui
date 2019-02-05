@@ -41,7 +41,7 @@ GUI的界面主要分为Video、Audio、Chapter、timecode、Output、Logs部分
 
 + **Name**, Audio轨道别名。
 
-+ **Delay**, 音频轨道的延迟长度。单位为ms。
++ **Delay**, 音频轨道的延迟长度。单位为Sample。详细说明参见[此处](https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFAppenG/QTFFAppenG.html)。
 
 ### Chapter
 

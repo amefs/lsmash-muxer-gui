@@ -41,7 +41,7 @@ This Gui contents Video, Audio, Chapter, timecode, Output, Logs. You can input v
 
 + **Name**, the alias of audio track
 
-+ **Delay**, audio track delay(ms).
++ **Delay**, audio track delay(priming samples), see [this](https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFAppenG/QTFFAppenG.html) description.
 
 ### Chapter
 
