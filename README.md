@@ -1,7 +1,7 @@
 L-SMASH Muxer GUI 2
 ===========================
 
-[中文文档](https://github.com/amefs/lsmash-muxer-gui/blob/v2.0/README_zh.md)
+[中文文档](https://github.com/amefs/lsmash-muxer-gui/blob/RC_2_x/README_zh.md)
 
 L-SMASH Muxer GUI 2 is a graphic interface for L-SMASH Muxer/Remuxer, It can support muxing/remuxing of video, audio and chapter.
 
@@ -41,7 +41,7 @@ This Gui contents Video, Audio, Chapter, timecode, Output, Logs. You can input v
 
 + **Name**, the alias of audio track
 
-+ **Delay**, audio track delay(priming samples), see [this](https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFAppenG/QTFFAppenG.html) description.
++ **Encoder Delay**, audio track delay(priming samples, only positive integers are allowed), see [this](https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFAppenG/QTFFAppenG.html) description.
 
 ### Chapter
 

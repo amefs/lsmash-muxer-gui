@@ -32,7 +32,7 @@
                     <RowDefinition Height="27"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="23"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
@@ -77,7 +77,7 @@
                     <RowDefinition Height="27"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="23"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
@@ -101,7 +101,7 @@
                 </Grid>
                 <Button Name="ClearANameBtn" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Height="22" Width="23" Click="ClearANameBtn_Click">&#x2573;</Button>
 
-                <Label Grid.Row="2" Grid.Column="0" Content="Delay"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Encoder Delay"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                     <Grid Margin="2" MaxWidth="145" Width="145">
                         <Grid.ColumnDefinitions>

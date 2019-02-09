@@ -831,7 +831,8 @@ namespace lsmash_gui_2
 
         private void DecButton_Click(object sender, RoutedEventArgs e)
         {
-            model.AudioDelay--;
+            if (model.AudioDelay > 0) model.AudioDelay--;
+            else model.AudioDelay = 0;
         }
     }
 }
