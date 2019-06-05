@@ -293,18 +293,25 @@ namespace lsmash_gui_2
                 string vTrackFPS = mi.Get(StreamKind.Video, 0, "FrameRate_Num") + "/" + mi.Get(StreamKind.Video, 0, "FrameRate_Den");
                 //if (vTrackFPS == "/")
                 //    vTrackFPS = (((int)Convert.ToSingle(mi.Get(StreamKind.Video, 0, "FrameRate")) * 1000).ToString() + "/" + "1000");
-                int vTrackFrameRate = (int)Convert.ToSingle(mi.Get(StreamKind.Video, 0, "FrameRate"));
-                switch (vTrackFrameRate)
+                if (mi.Get(StreamKind.Video, 0, "FrameRate") != "")
                 {
-                    case 23: vTrackFPS = "24000/1001"; break;
-                    case 24: vTrackFPS = "24000/1000"; break;
-                    case 25: vTrackFPS = "25000/1000"; break;
-                    case 29: vTrackFPS = "30000/1001"; break;
-                    case 30: vTrackFPS = "30000/1000"; break;
-                    case 50: vTrackFPS = "50000/1000"; break;
-                    case 59: vTrackFPS = "60000/1001"; break;
-                    case 60: vTrackFPS = "60000/1000"; break;
-                    default: vTrackFPS = "24000/1001"; break;
+                    int vTrackFrameRate = (int)Convert.ToSingle(mi.Get(StreamKind.Video, 0, "FrameRate"));
+                    switch (vTrackFrameRate)
+                    {
+                        case 23: vTrackFPS = "24000/1001"; break;
+                        case 24: vTrackFPS = "24000/1000"; break;
+                        case 25: vTrackFPS = "25000/1000"; break;
+                        case 29: vTrackFPS = "30000/1001"; break;
+                        case 30: vTrackFPS = "30000/1000"; break;
+                        case 50: vTrackFPS = "50000/1000"; break;
+                        case 59: vTrackFPS = "60000/1001"; break;
+                        case 60: vTrackFPS = "60000/1000"; break;
+                        default: vTrackFPS = "24000/1001"; break;
+                    }
+                }
+                else
+                {
+                    vTrackFPS = "24000/1001";
                 }
                 this.vTrackFPS = vTrackFPS;
                 mi.Close();

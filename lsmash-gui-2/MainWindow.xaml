@@ -227,7 +227,7 @@
             <Button Name="ClearBtn" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3" Margin="0" Height="23" Width="75" Click="ClearBtn_Click">Clear</Button>
             <Button Name="StartBtn" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Grid.Column="4" Margin="0" Height="23" Width="75" Click="StartBtn_Click">Start</Button>
 
-            <Label Grid.Row="1" Grid.Column="0" Margin="0">v2.1a</Label>
+            <Label Grid.Row="1" Grid.Column="0" Margin="0">v2.1b</Label>
         </Grid>
     </Grid>
 </Window>
