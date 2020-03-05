@@ -124,9 +124,9 @@ namespace lsmash_gui_2
                             if (!string.IsNullOrEmpty(model.VideoTrackName))
                             {
                                 if (vFPSFlag)
-                                    argMuxer += ",handler=" + model.VideoTrackName;
+                                    argMuxer += ",handler=" + "\"" + model.VideoTrackName + "\"";
                                 else
-                                    argMuxer += "?handler=" + model.VideoTrackName;
+                                    argMuxer += "?handler=" + "\"" + model.VideoTrackName + "\"";
                                 vHandlerFlag = true;
                             }
                             // vTrack PAR
@@ -141,7 +141,7 @@ namespace lsmash_gui_2
                             // atrack additions
                             if (!string.IsNullOrEmpty(model.AudioTrackName))
                             {
-                                argMuxer += "?handler=" + model.AudioTrackName;
+                                argMuxer += "?handler=" + "\"" + model.AudioTrackName + "\"";
                                 aHandlerFlag = true;
                             }
                             if (!string.IsNullOrEmpty(model.LanguageCode))
@@ -188,9 +188,9 @@ namespace lsmash_gui_2
                             if (!string.IsNullOrEmpty(model.VideoTrackName))
                             {
                                 if (vFPSFlag)
-                                    argMuxer += ",handler=" + model.VideoTrackName;
+                                    argMuxer += ",handler=" + "\"" + model.VideoTrackName + "\"";
                                 else
-                                    argMuxer += "?handler=" + model.VideoTrackName;
+                                    argMuxer += "?handler=" + "\"" + model.VideoTrackName + "\"";
                                 vHandlerFlag = true;
                             }
                             // vTrack PAR
@@ -220,7 +220,7 @@ namespace lsmash_gui_2
                             argMuxer += " -i \"" + model.AudioPath + "\"";
                             argMuxer += model.comm.aParameter;
                             // aTrack Name
-                            if (!string.IsNullOrEmpty(model.AudioTrackName)) argMuxer += "?" + model.comm.aTrackID + ":handler=" + model.AudioTrackName;
+                            if (!string.IsNullOrEmpty(model.AudioTrackName)) argMuxer += "?" + model.comm.aTrackID + ":handler=" + "\"" + model.AudioTrackName + "\"";
                             // aTrack Lang
                             if (!string.IsNullOrEmpty(model.LanguageCode))
                                 if (aHandlerFlag)
@@ -267,9 +267,9 @@ namespace lsmash_gui_2
                         if (!string.IsNullOrEmpty(model.VideoTrackName))
                         {
                             if (vFPSFlag)
-                                argMuxer += ",handler=" + model.VideoTrackName;
+                                argMuxer += ",handler=" + "\"" + model.VideoTrackName + "\"";
                             else
-                                argMuxer += "?handler=" + model.VideoTrackName;
+                                argMuxer += "?handler=" + "\"" + model.VideoTrackName + "\"";
                             vHandlerFlag = true;
                         }
                         // vTrack PAR
@@ -309,7 +309,7 @@ namespace lsmash_gui_2
                             // atrack additions
                             if (!string.IsNullOrEmpty(model.AudioTrackName))
                             {
-                                argMuxer += "?handler=" + model.AudioTrackName;
+                                argMuxer += "?handler=" + "\"" + model.AudioTrackName + "\"";
                                 aHandlerFlag = true;
                             }
                             if (!string.IsNullOrEmpty(model.LanguageCode))
@@ -342,7 +342,7 @@ namespace lsmash_gui_2
                             argMuxer = " -i \"" + model.VideoPath + "\"";
                             argMuxer += model.comm.vParameter;
                             // vTrack Name
-                            if (!string.IsNullOrEmpty(model.VideoTrackName)) argMuxer += "?" + "1:handler=" + model.VideoTrackName;
+                            if (!string.IsNullOrEmpty(model.VideoTrackName)) argMuxer += "?" + "1:handler=" + "\"" + model.VideoTrackName + "\"";
                             // vtrack remux additions
                             // vTrack Name
                             argMuxer += " -i \"" + aTrackMP4Path + "\"";
@@ -371,7 +371,7 @@ namespace lsmash_gui_2
                             argMuxer = " -i \"" + model.VideoPath + "\"";
                             argMuxer += model.comm.vParameter;
                             // vTrack Name
-                            if (!string.IsNullOrEmpty(model.VideoTrackName)) argMuxer += "?" + "1:handler=" + model.VideoTrackName;
+                            if (!string.IsNullOrEmpty(model.VideoTrackName)) argMuxer += "?" + "1:handler=" + "\"" + model.VideoTrackName + "\"";
                             // vtrack remux additions
                             // vTrack Name
                             argMuxer += " -i \"" + model.AudioPath + "\"";
@@ -379,7 +379,7 @@ namespace lsmash_gui_2
                             // aTrack Name
                             if (!string.IsNullOrEmpty(model.AudioTrackName))
                             {
-                                argMuxer += "?" + model.comm.aTrackID + ":handler=" + model.AudioTrackName;
+                                argMuxer += "?" + model.comm.aTrackID + ":handler=" + "\"" + model.AudioTrackName + "\"";
                                 aHandlerFlag = true;
                             }
                             // aTrack Lang
