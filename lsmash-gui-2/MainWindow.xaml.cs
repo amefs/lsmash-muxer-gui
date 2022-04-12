@@ -245,9 +245,9 @@ namespace lsmash_gui_2
                                 this.ProcessBar.Value = 0;
                                 this.ProcessBar.IsIndeterminate = true;
                             }));
-                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video and audio....");
+                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing video and audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
-                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
+                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing finished.");
                             System.IO.File.Delete(@vTrackMP4Path);
                         }
                     }
@@ -334,7 +334,7 @@ namespace lsmash_gui_2
                                 this.ProcessBar.Value = 0;
                                 this.ProcessBar.IsIndeterminate = true;
                             }));
-                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing RAW aideo....");
+                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing RAW audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
                             LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Muxing finished.");
 
@@ -360,9 +360,9 @@ namespace lsmash_gui_2
                                 this.ProcessBar.Value = 0;
                                 this.ProcessBar.IsIndeterminate = true;
                             }));
-                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video and audio....");
+                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing video and audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
-                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
+                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing finished.");
                             System.IO.File.Delete(@aTrackMP4Path);
                         }
                         else
@@ -400,9 +400,9 @@ namespace lsmash_gui_2
                                 this.ProcessBar.Value = 0;
                                 this.ProcessBar.IsIndeterminate = true;
                             }));
-                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video and audio....");
+                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing video and audio....");
                             ExcuteDosCommand(Excutable + argMuxer);
-                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
+                            LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing finished.");
                         }
                     }
                     else
@@ -423,9 +423,9 @@ namespace lsmash_gui_2
                             this.ProcessBar.Value = 0;
                             this.ProcessBar.IsIndeterminate = true;
                         }));
-                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video....");
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing video....");
                         ExcuteDosCommand(Excutable + argMuxer);
-                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing finished.");
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing finished.");
                     }
                 }
 
@@ -481,7 +481,7 @@ namespace lsmash_gui_2
                             this.ProcessBar.Value = 0;
                             this.ProcessBar.IsIndeterminate = true;
                         }), DispatcherPriority.Background);
-                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Reuxing video....");
+                        LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Remuxing video....");
                         ExcuteDosCommand(Excutable + argMuxer);
                         LogBox.Dispatcher.BeginInvoke(logAct, LogBox, "Timecode editing finished.");
                         System.IO.File.Delete(@chapterTmp);
