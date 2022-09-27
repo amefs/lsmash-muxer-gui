@@ -6,6 +6,8 @@ L-SMASH Muxer GUI 2
 L-SMASH Muxer GUI 2 is a graphic interface for L-SMASH Muxer/Remuxer, It can support muxing/remuxing of video, audio and chapter.
 
 ## Table of Contents
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Famefs%2Flsmash-muxer-gui.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Famefs%2Flsmash-muxer-gui?ref=badge_shield)
+
 - [L-SMASH Muxer GUI 2](#l-smash-muxer-gui-2)
   - [Table of Contents](#table-of-contents)
   - [Introduction of GUI](#introduction-of-gui)
@@ -112,3 +114,7 @@ Finally, everyone is welcome to help me improve this GUI.
 
 thanks [Kice](https://github.com/kice) for provide WPF framemwork
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Famefs%2Flsmash-muxer-gui.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Famefs%2Flsmash-muxer-gui?ref=badge_large)
